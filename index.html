@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistemul Endocrin | Platformă Educațională Interactivă</title>
+    <meta name="description" content="Descoperă sistemul endocrin - glande, hormoni, mecanisme de acțiune. Platformă educațională interactivă pentru elevi.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ======= LOADING SCREEN ======= -->
+<div id="loading-screen">
+    <div class="loading-content">
+        <div class="loading-dna">
+            <div class="dna-strand"></div>
+            <div class="dna-strand"></div>
+        </div>
+        <h1 class="loading-title">Sistemul Endocrin</h1>
+        <div class="loading-bar-wrap"><div class="loading-bar" id="loading-bar"></div></div>
+        <p class="loading-status" id="loading-status">Se incarca datele...</p>
+    </div>
+</div>
+
+<!-- ======= CURSOR ======= -->
+<div class="cursor-dot" id="cursor-dot"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- ======= LESSON PROGRESS BAR ======= -->
+<div class="lesson-progress-wrap" id="lesson-progress-wrap">
+    <div class="lesson-progress-inner">
+        <span class="lp-label"><i class="fa-solid fa-graduation-cap"></i> Progres lecție</span>
+        <div class="lp-bar-track"><div class="lp-bar-fill" id="lp-bar-fill"></div></div>
+        <span class="lp-pct" id="lp-pct">0%</span>
+        <div class="lp-sections" id="lp-sections">
+            <span class="lp-dot" data-sec="intro" title="Introducere"></span>
+            <span class="lp-dot" data-sec="hormoni" title="Hormoni"></span>
+            <span class="lp-dot" data-sec="mecanism" title="Mecanism"></span>
+            <span class="lp-dot" data-sec="glande" title="Glande"></span>
+            <span class="lp-dot" data-sec="boli" title="Boli"></span>
+            <span class="lp-dot" data-sec="quiz" title="Quiz"></span>
+        </div>
+    </div>
+</div>
+
+<!-- ======= BADGE PANEL ======= -->
+<div class="badge-panel" id="badge-panel">
+    <div class="badge-panel-header" onclick="toggleBadgePanel()">
+        <i class="fa-solid fa-medal"></i>
+        <span>Badge-uri</span>
+        <span class="badge-count" id="badge-count">0</span>
+    </div>
+    <div class="badge-panel-body" id="badge-panel-body">
+        <div class="badge-item locked" id="badge-explorer" title="Explorer">
+            <div class="badge-icon">🔭</div>
+            <div class="badge-name">Explorer</div>
+            <div class="badge-cond">Citește Introducerea</div>
+        </div>
+        <div class="badge-item locked" id="badge-hunter" title="Hormone Hunter">
+            <div class="badge-icon">🧪</div>
+            <div class="badge-name">Hormone Hunter</div>
+            <div class="badge-cond">Deschide prima glandă</div>
+        </div>
+        <div class="badge-item locked" id="badge-anatomist" title="Anatomist">
+            <div class="badge-icon">🫀</div>
+            <div class="badge-name">Anatomist</div>
+            <div class="badge-cond">Deschide 5 glande</div>
+        </div>
+        <div class="badge-item locked" id="badge-scientist" title="Science Pro">
+            <div class="badge-icon">🔬</div>
+            <div class="badge-name">Science Pro</div>
+            <div class="badge-cond">Activează modul Avansat</div>
+        </div>
+        <div class="badge-item locked" id="badge-master" title="Hormone Master">
+            <div class="badge-icon">🏆</div>
+            <div class="badge-name">Hormone Master</div>
+            <div class="badge-cond">Obține 5/5 la Quiz</div>
+        </div>
+        <div class="badge-item locked" id="badge-scholar" title="Scholar">
+            <div class="badge-icon">🎓</div>
+            <div class="badge-name">Scholar</div>
+            <div class="badge-cond">Completează lecția 100%</div>
+        </div>
+    </div>
+</div>
+
+<!-- ======= MOLECULE CANVAS ======= -->
+<canvas id="molecule-canvas"></canvas>
+
+<!-- ======= BADGE TOAST ======= -->
+<div class="badge-toast" id="badge-toast"></div>
+
+
+<!-- ======= NAVBAR ======= -->
+<nav class="navbar" id="navbar">
+    <a class="nav-logo" href="#hero"><i class="fa-solid fa-dna"></i> EndoGhid</a>
+    <ul class="nav-links" id="nav-links">
+        <li><a href="#intro">Introducere</a></li>
+        <li><a href="#hormoni">Hormoni</a></li>
+        <li><a href="#mecanism">Mecanism</a></li>
+        <li><a href="#glande">Glande</a></li>
+        <li><a href="#boli">Boli</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+    </ul>
+    <div class="nav-controls">
+        <div class="mode-toggle" id="modeToggle" title="Schimbă modul">
+            <span class="mode-label student">🎓 Student</span>
+            <div class="toggle-switch"><span class="toggle-thumb"></span></div>
+            <span class="mode-label advanced">🔬 Avansat</span>
+        </div>
+        <button class="sound-btn" id="soundBtn" title="Sunet On/Off" onclick="toggleSound()">
+            <i class="fa-solid fa-volume-high" id="soundIcon"></i>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- ======= HERO ======= -->
+<section class="hero" id="hero">
+    <div class="hero-particles" id="hero-particles"></div>
+    <div class="hero-content">
+        <div class="hero-badge reveal">🧬 Biologie · Clasa a X-a</div>
+        <h1 class="hero-title">
+            <span class="reveal delay-1">Sistemul</span>
+            <span class="hero-gradient reveal delay-2">Endocrin</span>
+        </h1>
+        <p class="hero-desc reveal delay-3">Descoperă rețeaua secretă de mesageri chimici care controlează fiecare proces din corpul tău — de la creștere și metabolism, până la emoții și reproducere.</p>
+        <div class="hero-actions reveal delay-4">
+            <a href="#intro" class="btn-primary"><i class="fa-solid fa-rocket"></i> Începe Explorarea</a>
+            <a href="#quiz" class="btn-ghost"><i class="fa-solid fa-gamepad"></i> Mergi la Quiz</a>
+        </div>
+        <div class="hero-stats reveal delay-5">
+            <div class="stat"><span class="stat-num">9</span><span class="stat-label">Glande</span></div>
+            <div class="stat-divider"></div>
+            <div class="stat"><span class="stat-num">50+</span><span class="stat-label">Hormoni</span></div>
+            <div class="stat-divider"></div>
+            <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Reacții</span></div>
+        </div>
+    </div>
+    <div class="hero-visual">
+        <div class="orbit-system">
+            <div class="orbit-center"><i class="fa-solid fa-dna"></i></div>
+            <div class="orbit o1"><span class="orb"><i class="fa-solid fa-brain"></i></span></div>
+            <div class="orbit o2"><span class="orb"><i class="fa-solid fa-heart-pulse"></i></span></div>
+            <div class="orbit o3"><span class="orb"><i class="fa-solid fa-droplet"></i></span></div>
+        </div>
+    </div>
+    <div class="hero-scroll-hint"><i class="fa-solid fa-chevron-down"></i></div>
+</section>
+
+<!-- ======= SECTION 1: INTRODUCERE ======= -->
+<section class="section" id="intro">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-tag">01 · Introducere</div>
+            <h2>Ce este Sistemul Endocrin?</h2>
+            <p class="section-desc">Un sistem de comunicare ultra-rapid care folosește hormoni ca mesageri chimici pentru a coordona funcțiile corpului.</p>
+        </div>
+
+        <div class="intro-grid">
+            <div class="intro-card glass-card reveal delay-1" data-mode="student">
+                <div class="card-icon" style="background: linear-gradient(135deg, #ec4899, #8b5cf6)"><i class="fa-solid fa-satellite-dish"></i></div>
+                <h3>Ce este?</h3>
+                <p>Sistemul endocrin este rețeaua de <strong>glande și organe</strong> care produc, stochează și secretă hormoni direct în sânge pentru a controla funcțiile corpului.</p>
+                <div class="advanced-content hidden">
+                    <p class="advanced-text">Sistemul endocrin funcționează prin <em>semnalizare endocrină</em> — glandele secretă hormoni în circulația sangvină, care transportă moleculele la celulele-țintă la distanță, spre deosebire de semnalizarea paracrină sau autocrină.</p>
+                </div>
+            </div>
+
+            <div class="intro-card glass-card reveal delay-2" data-mode="student">
+                <div class="card-icon" style="background: linear-gradient(135deg, #06b6d4, #3b82f6)"><i class="fa-solid fa-envelope-open"></i></div>
+                <h3>Ce sunt Hormonii?</h3>
+                <p>Hormonii sunt <strong>mesageri chimici</strong> produși de glande. Ei călătoresc prin sânge și transmit instrucțiuni celulelor-țintă — similar cu niște mesaje text biologice.</p>
+                <div class="advanced-content hidden">
+                    <p class="advanced-text">Hormonii sunt molecule bioactive (steroizi, peptide, aminoacizi modificați) care se leagă de receptori specifici pe sau în celula-țintă, declanșând cascade de semnalizare intracelulare.</p>
+                </div>
+            </div>
+
+            <div class="intro-card glass-card reveal delay-3" data-mode="student">
+                <div class="card-icon" style="background: linear-gradient(135deg, #10b981, #06b6d4)"><i class="fa-solid fa-scale-balanced"></i></div>
+                <h3>Homeostazia</h3>
+                <p>Homeostazia este capacitatea corpului de a menține un <strong>echilibru intern stabil</strong> — temperatura, glicemia, tensiunea — indiferent de schimbările exterioare.</p>
+                <div class="advanced-content hidden">
+                    <p class="advanced-text">Homeostazia este menținută prin bucle de feedback negativ și pozitiv. Feedback-ul negativ (dominant) detectează deviația de la valoarea de referință și activează mecanisme corective — ex: insulina reduce glicemia crescută.</p>
+                </div>
+            </div>
+
+            <div class="intro-card glass-card reveal delay-4" data-mode="student">
+                <div class="card-icon" style="background: linear-gradient(135deg, #f59e0b, #ef4444)"><i class="fa-solid fa-arrows-rotate"></i></div>
+                <h3>Feedback Negativ</h3>
+                <p>Ca un termostat: când temperatura e prea mare, termostatul oprește căldura. Când un hormon crește prea mult, glanda <strong>oprește producția</strong> — pentru a restabili echilibrul.</p>
+                <div class="advanced-content hidden">
+                    <p class="advanced-text">Axa hipotalamo-hipofizară este prototipul bucl de feedback negativ: TRH → TSH → T3/T4. Nivelul crescut de T3/T4 inhibă atât hipotalamusul (↓TRH) cât și hipofiza (↓TSH), restabilind homeostazia tiroidiană.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="feedback-diagram reveal">
+            <h3><i class="fa-solid fa-rotate"></i> Cum funcționează Feedback-ul Negativ</h3>
+            <div class="feedback-flow">
+                <div class="flow-step"><div class="flow-icon">🧠</div><span>Hipotalamus detectează dezechilibru</span></div>
+                <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                <div class="flow-step"><div class="flow-icon">💊</div><span>Glanda secretă hormon</span></div>
+                <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                <div class="flow-step"><div class="flow-icon">🎯</div><span>Celula-țintă răspunde</span></div>
+                <div class="flow-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                <div class="flow-step active"><div class="flow-icon">⚖️</div><span>Echilibru restaurat → producția se oprește</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= SECTION 2: TIPURI HORMONI ======= -->
+<section class="section section-alt" id="hormoni">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-tag">02 · Clasificare</div>
+            <h2>Tipuri de Hormoni</h2>
+            <p class="section-desc">Hormonii se împart în două mari categorii în funcție de structura lor chimică și modul de acțiune.</p>
+        </div>
+
+        <div class="hormone-compare">
+            <div class="hormone-card glass-card reveal delay-1">
+                <div class="hormone-badge" style="background: linear-gradient(135deg,#f59e0b,#ef4444)">Steroizi</div>
+                <div class="hormone-icon">🧱</div>
+                <h3>Hormoni Steroizi</h3>
+                <div class="hormone-details">
+                    <div class="detail-item"><i class="fa-solid fa-flask"></i> <strong>Bază chimică:</strong> Derivați din colesterol</div>
+                    <div class="detail-item"><i class="fa-solid fa-arrows-to-circle"></i> <strong>Acțiune:</strong> Traversează membrana celulară → receptor intern</div>
+                    <div class="detail-item"><i class="fa-solid fa-dna"></i> <strong>Efect:</strong> Modifică direct expresia genică (ADN)</div>
+                    <div class="detail-item"><i class="fa-solid fa-clock"></i> <strong>Durată efect:</strong> Ore - zile (efect lent dar durabil)</div>
+                </div>
+                <div class="hormone-examples">
+                    <span class="ex-tag">Cortizol</span>
+                    <span class="ex-tag">Estrogen</span>
+                    <span class="ex-tag">Testosteron</span>
+                    <span class="ex-tag">Aldosteron</span>
+                    <span class="ex-tag">Progesteron</span>
+                </div>
+                <div class="advanced-content hidden">
+                    <p class="advanced-text">Receptorii pentru hormoni steroizi sunt factori de transcripție nucleari. Complexul hormon-receptor se leagă la elemente de răspuns hormonal (HRE) din promotorul genelor-țintă, activând sau reprimând transcripția ARNm.</p>
+                </div>
+            </div>
+
+            <div class="hormone-vs"><div class="vs-circle">VS</div></div>
+
+            <div class="hormone-card glass-card reveal delay-2">
+                <div class="hormone-badge" style="background: linear-gradient(135deg,#06b6d4,#8b5cf6)">Non-Steroizi</div>
+                <div class="hormone-icon">🔑</div>
+                <h3>Hormoni Non-Steroizi</h3>
+                <div class="hormone-details">
+                    <div class="detail-item"><i class="fa-solid fa-flask"></i> <strong>Bază chimică:</strong> Peptide, proteine, aminoacizi</div>
+                    <div class="detail-item"><i class="fa-solid fa-arrows-to-circle"></i> <strong>Acțiune:</strong> Se leagă de receptor pe suprafața celulei</div>
+                    <div class="detail-item"><i class="fa-solid fa-bolt"></i> <strong>Mesager secund:</strong> cAMP, Ca²⁺ (cascadă intracelulară)</div>
+                    <div class="detail-item"><i class="fa-solid fa-clock"></i> <strong>Durată efect:</strong> Secunde - minute (efect rapid)</div>
+                </div>
+                <div class="hormone-examples">
+                    <span class="ex-tag">Insulină</span>
+                    <span class="ex-tag">Glucagon</span>
+                    <span class="ex-tag">TSH</span>
+                    <span class="ex-tag">Adrenalină</span>
+                    <span class="ex-tag">GH</span>
+                </div>
+                <div class="advanced-content hidden">
+                    <p class="advanced-text">Receptorii de suprafață includ: receptori cuplați la proteina G (GPCR → adenilat ciclază → cAMP → PKA), receptori cu activitate tirozin-kinazică (insulina → MAPK/PI3K) și receptori cuplați la canale ionice.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= SECTION 3: MECANISM ======= -->
+<section class="section" id="mecanism">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-tag">03 · Mecanism</div>
+            <h2>Cum Acționează Hormonii?</h2>
+            <p class="section-desc">Urmărește călătoria unui hormon de la secreție până la efect — apasă pe pași pentru a explora procesul.</p>
+        </div>
+
+        <div class="mechanism-steps">
+            <div class="mech-step glass-card reveal delay-1" onclick="activateMechStep(this, 0)">
+                <div class="mech-num">01</div>
+                <div class="mech-icon"><i class="fa-solid fa-industry"></i></div>
+                <h4>Secreție</h4>
+                <p>Glanda produce și eliberează hormonul în circulația sangvină</p>
+            </div>
+            <div class="mech-arrow reveal delay-1"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class="mech-step glass-card reveal delay-2" onclick="activateMechStep(this, 1)">
+                <div class="mech-num">02</div>
+                <div class="mech-icon" style="color:#ec4899"><i class="fa-solid fa-truck-moving"></i></div>
+                <h4>Transport</h4>
+                <p>Hormonul călătorește prin sânge (legat de proteine transportoare)</p>
+            </div>
+            <div class="mech-arrow reveal delay-2"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class="mech-step glass-card reveal delay-3" onclick="activateMechStep(this, 2)">
+                <div class="mech-num">03</div>
+                <div class="mech-icon" style="color:#10b981"><i class="fa-solid fa-key"></i></div>
+                <h4>Recepție</h4>
+                <p>Hormonul se leagă specific de receptorul celulei-țintă (cheie-broască)</p>
+            </div>
+            <div class="mech-arrow reveal delay-3"><i class="fa-solid fa-arrow-right"></i></div>
+            <div class="mech-step glass-card reveal delay-4" onclick="activateMechStep(this, 3)">
+                <div class="mech-num">04</div>
+                <div class="mech-icon" style="color:#f59e0b"><i class="fa-solid fa-bolt"></i></div>
+                <h4>Răspuns</h4>
+                <p>Celula execută instrucțiunile: produce proteine, secrete enzime, se divide</p>
+            </div>
+        </div>
+
+        <div class="mech-detail glass-card reveal" id="mech-detail">
+            <div class="mech-detail-content" id="mech-detail-content">
+                <i class="fa-solid fa-hand-pointer" style="font-size:2rem; color: var(--accent)"></i>
+                <p>Apasă pe un pas pentru a vedea detalii</p>
+            </div>
+        </div>
+
+        <!-- Animatie hormon in sange -->
+        <div class="blood-animation glass-card reveal">
+            <div class="blood-header">
+                <h3><i class="fa-solid fa-droplet" style="color:#ef4444"></i> Hormonul Călătorind prin Sânge</h3>
+                <button class="btn-small" id="animBtn" onclick="toggleBloodAnim()"><i class="fa-solid fa-play"></i> Pornește</button>
+            </div>
+            <div class="blood-vessel" id="blood-vessel">
+                <div class="vessel-wall top"></div>
+                <div class="vessel-interior" id="vessel-interior">
+                    <div class="blood-cells-bg">
+                        <div class="rbc"></div><div class="rbc r2"></div><div class="rbc r3"></div>
+                        <div class="rbc r4"></div><div class="rbc r5"></div><div class="rbc r6"></div>
+                    </div>
+                </div>
+                <div class="vessel-wall bottom"></div>
+            </div>
+            <div class="blood-legend">
+                <span><span class="leg-dot" style="background:#ef4444"></span> Hematii</span>
+                <span><span class="leg-dot" style="background:#8b5cf6"></span> Hormon</span>
+                <span><span class="leg-dot" style="background:#10b981"></span> Receptor activ</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= SECTION 4: GLANDE ======= -->
+<section class="section section-alt" id="glande">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-tag">04 · Anatomie</div>
+            <h2>Glandele Endocrine</h2>
+            <p class="section-desc">Apasă pe o glandă pentru a descoperi localizarea, hormonii produși și efectele lor.</p>
+        </div>
+
+        <div class="glande-layout">
+            <!-- Body diagram left -->
+            <div class="body-diagram-wrap reveal">
+                <h3 class="diagram-title"><i class="fa-solid fa-person"></i> Diagrama Corpului</h3>
+                <div class="body-container">
+                    <svg class="body-svg" viewBox="0 0 200 480" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#1a103a"/>
+                                <stop offset="100%" style="stop-color:#0f172a"/>
+                            </linearGradient>
+                            <filter id="gf"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                        </defs>
+                        <!-- Cap -->
+                        <ellipse cx="100" cy="36" rx="26" ry="30" fill="rgba(139,92,246,0.15)" stroke="rgba(139,92,246,0.5)" stroke-width="1.2"/>
+                        <!-- Ochi -->
+                        <ellipse cx="92" cy="32" rx="3" ry="3.5" fill="none" stroke="rgba(139,92,246,0.6)" stroke-width="0.8"/>
+                        <ellipse cx="108" cy="32" rx="3" ry="3.5" fill="none" stroke="rgba(139,92,246,0.6)" stroke-width="0.8"/>
+                        <path d="M93 44 Q100 49 107 44" fill="none" stroke="rgba(139,92,246,0.6)" stroke-width="0.8"/>
+                        <!-- Gat -->
+                        <rect x="92" y="65" width="16" height="18" rx="4" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.4)" stroke-width="1"/>
+                        <!-- Trunchi -->
+                        <path d="M62 83 Q52 96 50 130 L50 220 Q53 240 100 244 Q147 240 150 220 L150 130 Q148 96 138 83 Z" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.4)" stroke-width="1.2"/>
+                        <!-- Linii anatomice -->
+                        <line x1="100" y1="85" x2="100" y2="243" stroke="rgba(139,92,246,0.2)" stroke-width="0.5" stroke-dasharray="3,4"/>
+                        <line x1="65" y1="140" x2="135" y2="140" stroke="rgba(139,92,246,0.15)" stroke-width="0.5"/>
+                        <line x1="65" y1="180" x2="135" y2="180" stroke="rgba(139,92,246,0.15)" stroke-width="0.5"/>
+                        <!-- Brat stang -->
+                        <path d="M51 90 Q34 97 26 140 Q22 178 26 215 Q28 230 37 230 Q46 230 48 215 L51 175 L54 125 Z" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.35)" stroke-width="1"/>
+                        <ellipse cx="31" cy="240" rx="8" ry="13" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.35)" stroke-width="0.9"/>
+                        <!-- Brat drept -->
+                        <path d="M149 90 Q166 97 174 140 Q178 178 174 215 Q172 230 163 230 Q154 230 152 215 L149 175 L146 125 Z" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.35)" stroke-width="1"/>
+                        <ellipse cx="169" cy="240" rx="8" ry="13" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.35)" stroke-width="0.9"/>
+                        <!-- Bazin -->
+                        <path d="M53 238 Q50 265 57 283 L143 283 Q150 265 147 238 Z" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.35)" stroke-width="1"/>
+                        <!-- Picior stang -->
+                        <path d="M60 281 Q56 315 55 365 Q54 405 58 432 Q60 445 70 445 Q80 445 82 432 L83 385 L85 281 Z" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.35)" stroke-width="1"/>
+                        <ellipse cx="68" cy="452" rx="13" ry="7" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.35)" stroke-width="0.9"/>
+                        <!-- Picior drept -->
+                        <path d="M140 281 Q144 315 145 365 Q146 405 142 432 Q140 445 130 445 Q120 445 118 432 L117 385 L115 281 Z" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.35)" stroke-width="1"/>
+                        <ellipse cx="132" cy="452" rx="13" ry="7" fill="rgba(139,92,246,0.1)" stroke="rgba(139,92,246,0.35)" stroke-width="0.9"/>
+
+                        <!-- HS: Hipotalamus -->
+                        <g class="body-hs" data-gland="hipotalamus" onclick="openGlandModal('hipotalamus')" style="cursor:pointer">
+                            <circle cx="100" cy="28" r="6" fill="rgba(236,72,153,0.25)" stroke="#ec4899" stroke-width="1.5" class="hs-pulse"/>
+                            <circle cx="100" cy="28" r="3" fill="#ec4899" filter="url(#gf)"/>
+                            <text x="112" y="31" fill="#ec4899" font-size="5.5" font-family="Inter,sans-serif" font-weight="700">Hipotalamus</text>
+                        </g>
+                        <!-- HS: Hipofiza -->
+                        <g class="body-hs" data-gland="hipofiza" onclick="openGlandModal('hipofiza')" style="cursor:pointer">
+                            <circle cx="100" cy="46" r="6" fill="rgba(139,92,246,0.25)" stroke="#8b5cf6" stroke-width="1.5" class="hs-pulse"/>
+                            <circle cx="100" cy="46" r="3" fill="#8b5cf6" filter="url(#gf)"/>
+                            <text x="112" y="49" fill="#8b5cf6" font-size="5.5" font-family="Inter,sans-serif" font-weight="700">Hipofiză</text>
+                        </g>
+                        <!-- HS: Tiroida -->
+                        <g class="body-hs" data-gland="tiroida" onclick="openGlandModal('tiroida')" style="cursor:pointer">
+                            <circle cx="100" cy="77" r="6" fill="rgba(6,182,212,0.25)" stroke="#06b6d4" stroke-width="1.5" class="hs-pulse"/>
+                            <circle cx="100" cy="77" r="3" fill="#06b6d4" filter="url(#gf)"/>
+                            <text x="112" y="80" fill="#06b6d4" font-size="5.5" font-family="Inter,sans-serif" font-weight="700">Tiroidă</text>
+                        </g>
+                        <!-- HS: Paratiroide -->
+                        <g class="body-hs" data-gland="paratiroide" onclick="openGlandModal('paratiroide')" style="cursor:pointer">
+                            <circle cx="86" cy="74" r="5" fill="rgba(234,179,8,0.25)" stroke="#eab308" stroke-width="1.5" class="hs-pulse"/>
+                            <circle cx="86" cy="74" r="2.5" fill="#eab308" filter="url(#gf)"/>
+                            <text x="40" y="70" fill="#eab308" font-size="5" font-family="Inter,sans-serif" font-weight="700" text-anchor="middle">Para-</text>
+                            <text x="40" y="77" fill="#eab308" font-size="5" font-family="Inter,sans-serif" font-weight="700" text-anchor="middle">tiroide</text>
+                            <line x1="46" y1="73" x2="81" y2="73" stroke="#eab308" stroke-width="0.6" opacity="0.6"/>
+                        </g>
+                        <!-- HS: Timus -->
+                        <g class="body-hs" data-gland="timus" onclick="openGlandModal('timus')" style="cursor:pointer">
+                            <circle cx="100" cy="108" r="5.5" fill="rgba(16,185,129,0.25)" stroke="#10b981" stroke-width="1.5" class="hs-pulse"/>
+                            <circle cx="100" cy="108" r="2.5" fill="#10b981" filter="url(#gf)"/>
+                            <text x="113" y="111" fill="#10b981" font-size="5.5" font-family="Inter,sans-serif" font-weight="700">Timus</text>
+                        </g>
+                        <!-- HS: Suprarenale -->
+                        <g class="body-hs" data-gland="suprarenale" onclick="openGlandModal('suprarenale')" style="cursor:pointer">
+                            <circle cx="76" cy="170" r="6" fill="rgba(239,68,68,0.25)" stroke="#ef4444" stroke-width="1.5" class="hs-pulse"/>
+                            <circle cx="76" cy="170" r="3" fill="#ef4444" filter="url(#gf)"/>
+                            <circle cx="124" cy="170" r="6" fill="rgba(239,68,68,0.25)" stroke="#ef4444" stroke-width="1.5" class="hs-pulse"/>
+                            <circle cx="124" cy="170" r="3" fill="#ef4444" filter="url(#gf)"/>
+                            <text x="147" y="173" fill="#ef4444" font-size="5.5" font-family="Inter,sans-serif" font-weight="700">Suprarenale</text>
+                        </g>
+                        <!-- HS: Pancreas -->
+                        <g class="body-hs" data-gland="pancreas" onclick="openGlandModal('pancreas')" style="cursor:pointer">
+                            <circle cx="94" cy="198" r="6" fill="rgba(249,115,22,0.25)" stroke="#f97316" stroke-width="1.5" class="hs-pulse"/>
+                            <circle cx="94" cy="198" r="3" fill="#f97316" filter="url(#gf)"/>
+                            <text x="40" y="201" fill="#f97316" font-size="5.5" font-family="Inter,sans-serif" font-weight="700" text-anchor="middle">Pancreas</text>
+                            <line x1="52" y1="198" x2="88" y2="198" stroke="#f97316" stroke-width="0.6" opacity="0.6"/>
+                        </g>
+                        <!-- HS: Gonade -->
+                        <g class="body-hs" data-gland="gonade" onclick="openGlandModal('gonade')" style="cursor:pointer">
+                            <circle cx="100" cy="263" r="6" fill="rgba(236,72,153,0.25)" stroke="#ec4899" stroke-width="1.5" class="hs-pulse"/>
+                            <circle cx="100" cy="263" r="3" fill="#ec4899" filter="url(#gf)"/>
+                            <text x="113" y="266" fill="#ec4899" font-size="5.5" font-family="Inter,sans-serif" font-weight="700">Gonade</text>
+                        </g>
+                        <!-- HS: Epifiza (Pineal) -->
+                        <g class="body-hs" data-gland="epifiza" onclick="openGlandModal('epifiza')" style="cursor:pointer">
+                            <circle cx="100" cy="38" r="4" fill="rgba(167,139,250,0.3)" stroke="#a78bfa" stroke-width="1.5" class="hs-pulse"/>
+                            <circle cx="100" cy="38" r="2" fill="#a78bfa" filter="url(#gf)"/>
+                            <text x="40" y="41" fill="#a78bfa" font-size="5" font-family="Inter,sans-serif" font-weight="700" text-anchor="middle">Epifiză</text>
+                            <line x1="47" y1="38" x2="95" y2="38" stroke="#a78bfa" stroke-width="0.6" opacity="0.6"/>
+                        </g>
+                    </svg>
+                </div>
+                <p class="diagram-hint"><i class="fa-solid fa-hand-pointer"></i> Apasă pe un punct luminos</p>
+            </div>
+
+            <!-- Glande cards right -->
+            <div class="glande-cards">
+                <div class="gland-card glass-card reveal delay-1" onclick="openGlandModal('hipotalamus')">
+                    <div class="gc-icon" style="background:linear-gradient(135deg,#ec4899,#8b5cf6)"><i class="fa-solid fa-brain"></i></div>
+                    <div class="gc-info">
+                        <h4>Hipotalamus</h4>
+                        <p>Comandantul sistemului endocrin — controlează hipofiza</p>
+                        <div class="gc-tags"><span class="tag">TRH</span><span class="tag">CRH</span><span class="tag">Oxitocină</span></div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right gc-arrow"></i>
+                </div>
+
+                <div class="gland-card glass-card reveal delay-2" onclick="openGlandModal('hipofiza')">
+                    <div class="gc-icon" style="background:linear-gradient(135deg,#8b5cf6,#3b82f6)"><i class="fa-solid fa-crown"></i></div>
+                    <div class="gc-info">
+                        <h4>Hipofiza (Hipofiză)</h4>
+                        <p>"Glanda șefă" — controlează celelalte glande</p>
+                        <div class="gc-tags"><span class="tag">GH</span><span class="tag">TSH</span><span class="tag">Prolactină</span></div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right gc-arrow"></i>
+                </div>
+
+                <div class="gland-card glass-card reveal delay-3" onclick="openGlandModal('tiroida')">
+                    <div class="gc-icon" style="background:linear-gradient(135deg,#06b6d4,#10b981)"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="gc-info">
+                        <h4>Glanda Tiroidă</h4>
+                        <p>Reglează metabolismul și energia</p>
+                        <div class="gc-tags"><span class="tag">T3</span><span class="tag">T4</span><span class="tag">Calcitonină</span></div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right gc-arrow"></i>
+                </div>
+
+                <div class="gland-card glass-card reveal delay-4" onclick="openGlandModal('paratiroide')">
+                    <div class="gc-icon" style="background:linear-gradient(135deg,#eab308,#f97316)"><i class="fa-solid fa-bone"></i></div>
+                    <div class="gc-info">
+                        <h4>Glandele Paratiroide</h4>
+                        <p>Controlează calciul și sănătatea oaselor</p>
+                        <div class="gc-tags"><span class="tag">PTH</span></div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right gc-arrow"></i>
+                </div>
+
+                <div class="gland-card glass-card reveal delay-5" onclick="openGlandModal('suprarenale')">
+                    <div class="gc-icon" style="background:linear-gradient(135deg,#ef4444,#f97316)"><i class="fa-solid fa-fire"></i></div>
+                    <div class="gc-info">
+                        <h4>Glandele Suprarenale</h4>
+                        <p>„Luptă sau fugi" — răspuns la stres</p>
+                        <div class="gc-tags"><span class="tag">Adrenalină</span><span class="tag">Cortizol</span><span class="tag">Aldosteron</span></div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right gc-arrow"></i>
+                </div>
+
+                <div class="gland-card glass-card reveal delay-6" onclick="openGlandModal('pancreas')">
+                    <div class="gc-icon" style="background:linear-gradient(135deg,#f97316,#eab308)"><i class="fa-solid fa-droplet"></i></div>
+                    <div class="gc-info">
+                        <h4>Pancreasul Endocrin</h4>
+                        <p>Controlează glicemia</p>
+                        <div class="gc-tags"><span class="tag">Insulină</span><span class="tag">Glucagon</span></div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right gc-arrow"></i>
+                </div>
+
+                <div class="gland-card glass-card reveal delay-1" onclick="openGlandModal('gonade')">
+                    <div class="gc-icon" style="background:linear-gradient(135deg,#ec4899,#f97316)"><i class="fa-solid fa-venus-mars"></i></div>
+                    <div class="gc-info">
+                        <h4>Gonadele</h4>
+                        <p>Hormoni sexuali și reproducere</p>
+                        <div class="gc-tags"><span class="tag">Estrogen</span><span class="tag">Progesteron</span><span class="tag">Testosteron</span></div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right gc-arrow"></i>
+                </div>
+
+                <div class="gland-card glass-card reveal delay-2" onclick="openGlandModal('epifiza')">
+                    <div class="gc-icon" style="background:linear-gradient(135deg,#a78bfa,#8b5cf6)"><i class="fa-solid fa-moon"></i></div>
+                    <div class="gc-info">
+                        <h4>Epifiza (Glanda Pineală)</h4>
+                        <p>Controlează ritmul somn-veghe</p>
+                        <div class="gc-tags"><span class="tag">Melatonină</span></div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right gc-arrow"></i>
+                </div>
+
+                <div class="gland-card glass-card reveal delay-3" onclick="openGlandModal('timus')">
+                    <div class="gc-icon" style="background:linear-gradient(135deg,#10b981,#06b6d4)"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="gc-info">
+                        <h4>Timusul</h4>
+                        <p>Educă celulele imune T</p>
+                        <div class="gc-tags"><span class="tag">Timozină</span><span class="tag">Timopoietină</span></div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right gc-arrow"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= SECTION 5: BOLI ======= -->
+<section class="section" id="boli">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-tag">05 · Patologie</div>
+            <h2>Boli Endocrine Frecvente</h2>
+            <p class="section-desc">Dezechilibrele hormonale pot provoca afecțiuni grave — dar înțelegerea lor este primul pas spre tratament.</p>
+        </div>
+
+        <div class="boli-grid">
+            <div class="boala-card glass-card reveal delay-1">
+                <div class="boala-header">
+                    <div class="boala-icon" style="background:linear-gradient(135deg,#f97316,#eab308)"><i class="fa-solid fa-chart-line"></i></div>
+                    <div class="boala-title">
+                        <h4>Diabet Zaharat</h4>
+                        <span class="boala-gland">Pancreas</span>
+                    </div>
+                </div>
+                <p>Pancreasul nu produce suficientă insulină (<strong>Tip 1</strong>) sau celulele nu răspund la insulină (<strong>Tip 2</strong>), cauzând glicemie crescută.</p>
+                <div class="boala-details">
+                    <span><i class="fa-solid fa-triangle-exclamation"></i> Simptome: sete excesivă, urinare frecventă, oboseală</span>
+                    <span><i class="fa-solid fa-pills"></i> Tratament: insulină, medicamente, dietă</span>
+                </div>
+            </div>
+
+            <div class="boala-card glass-card reveal delay-2">
+                <div class="boala-header">
+                    <div class="boala-icon" style="background:linear-gradient(135deg,#8b5cf6,#ec4899)"><i class="fa-solid fa-person-arrow-up-from-line"></i></div>
+                    <div class="boala-title">
+                        <h4>Gigantism / Acromegalie</h4>
+                        <span class="boala-gland">Hipofiză - exces GH</span>
+                    </div>
+                </div>
+                <p>Excesul de hormon de creștere (GH) înainte de pubertate cauzează <strong>gigantism</strong>; după pubertate cauzează <strong>acromegalie</strong> (mărirea extremităților).</p>
+                <div class="boala-details">
+                    <span><i class="fa-solid fa-triangle-exclamation"></i> Simptome: statură excesivă, mâini/picioare mari</span>
+                    <span><i class="fa-solid fa-pills"></i> Tratament: chirurgie, radioterapie</span>
+                </div>
+            </div>
+
+            <div class="boala-card glass-card reveal delay-3">
+                <div class="boala-header">
+                    <div class="boala-icon" style="background:linear-gradient(135deg,#06b6d4,#3b82f6)"><i class="fa-solid fa-gauge-high"></i></div>
+                    <div class="boala-title">
+                        <h4>Hipertiroidism</h4>
+                        <span class="boala-gland">Tiroidă - exces T3/T4</span>
+                    </div>
+                </div>
+                <p>Tiroida produce prea mult hormoni tiroidieni, accelerând metabolismul. Cauza comună: <strong>boala Graves</strong> (autoimună).</p>
+                <div class="boala-details">
+                    <span><i class="fa-solid fa-triangle-exclamation"></i> Simptome: tahicardie, pierdere în greutate, anxietate, tremur</span>
+                    <span><i class="fa-solid fa-pills"></i> Tratament: antitiroidiene, iod radioactiv</span>
+                </div>
+            </div>
+
+            <div class="boala-card glass-card reveal delay-4">
+                <div class="boala-header">
+                    <div class="boala-icon" style="background:linear-gradient(135deg,#3b82f6,#8b5cf6)"><i class="fa-solid fa-battery-quarter"></i></div>
+                    <div class="boala-title">
+                        <h4>Hipotiroidism</h4>
+                        <span class="boala-gland">Tiroidă - deficit T3/T4</span>
+                    </div>
+                </div>
+                <p>Tiroida nu produce suficienți hormoni, încetinind toate procesele metabolice. La nou-născuți netratați → <strong>cretinism</strong>.</p>
+                <div class="boala-details">
+                    <span><i class="fa-solid fa-triangle-exclamation"></i> Simptome: oboseală, creștere în greutate, uscăciunea pielii</span>
+                    <span><i class="fa-solid fa-pills"></i> Tratament: levotiroxină (T4 sintetic)</span>
+                </div>
+            </div>
+
+            <div class="boala-card glass-card reveal delay-5">
+                <div class="boala-header">
+                    <div class="boala-icon" style="background:linear-gradient(135deg,#ef4444,#f97316)"><i class="fa-solid fa-moon"></i></div>
+                    <div class="boala-title">
+                        <h4>Sindromul Cushing</h4>
+                        <span class="boala-gland">Suprarenale - exces cortizol</span>
+                    </div>
+                </div>
+                <p>Excesul cronic de cortizol (natural sau prin medicamente corticosteroide) afectează metabolismul, imunitatea și structura corporală.</p>
+                <div class="boala-details">
+                    <span><i class="fa-solid fa-triangle-exclamation"></i> Simptome: față "în lună plină", obezitate abdominală, slăbiciune musculară</span>
+                    <span><i class="fa-solid fa-pills"></i> Tratament: reducere corticosteroide / chirurgie</span>
+                </div>
+            </div>
+
+            <div class="boala-card glass-card reveal delay-6">
+                <div class="boala-header">
+                    <div class="boala-icon" style="background:linear-gradient(135deg,#eab308,#10b981)"><i class="fa-solid fa-child-reaching"></i></div>
+                    <div class="boala-title">
+                        <h4>Nanism Hipofizar</h4>
+                        <span class="boala-gland">Hipofiză - deficit GH</span>
+                    </div>
+                </div>
+                <p>Deficitul de hormon de creștere în copilărie cauzează creștere încetinită — tratamentul cu GH sintetic poate normaliza creșterea dacă este administrat la timp.</p>
+                <div class="boala-details">
+                    <span><i class="fa-solid fa-triangle-exclamation"></i> Simptome: statură mică pentru vârstă, trăsături copilarești la adulți</span>
+                    <span><i class="fa-solid fa-pills"></i> Tratament: GH recombinant injectat</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= SECTION 6: QUIZ ======= -->
+<section class="section section-alt" id="quiz">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-tag">06 · Quiz</div>
+            <h2>Testează-ți Cunoștințele</h2>
+            <p class="section-desc">5 întrebări despre sistemul endocrin. Vei vedea scorul la final!</p>
+        </div>
+
+        <div class="quiz-wrap glass-card reveal">
+            <div class="quiz-progress">
+                <div class="quiz-progress-bar" id="quiz-progress-bar"></div>
+            </div>
+            <div id="quiz-area">
+                <div class="quiz-start" id="quiz-start">
+                    <div class="quiz-start-icon">🧬</div>
+                    <h3>Ești pregătit?</h3>
+                    <p>5 întrebări · Răspuns multiplu · Feedback instant</p>
+                    <button class="btn-primary" onclick="startQuiz()"><i class="fa-solid fa-play"></i> Începe Quiz-ul</button>
+                </div>
+
+                <div class="quiz-question-wrap hidden" id="quiz-question-wrap">
+                    <div class="quiz-header">
+                        <span class="quiz-counter" id="quiz-counter">Întrebarea 1/5</span>
+                        <span class="quiz-score-live" id="quiz-score-live">Scor: 0</span>
+                    </div>
+                    <div class="quiz-q" id="quiz-q"></div>
+                    <div class="quiz-options" id="quiz-options"></div>
+                    <div class="quiz-feedback hidden" id="quiz-feedback"></div>
+                    <button class="btn-primary hidden quiz-next-btn" id="quiz-next-btn" onclick="nextQuestion()">Următoarea <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <div class="quiz-result hidden" id="quiz-result">
+                    <div class="result-emoji" id="result-emoji"></div>
+                    <h3 id="result-title"></h3>
+                    <div class="result-score" id="result-score"></div>
+                    <p id="result-msg"></p>
+                    <div class="result-actions">
+                        <button class="btn-primary" onclick="restartQuiz()"><i class="fa-solid fa-rotate-right"></i> Încearcă din nou</button>
+                        <a href="#intro" class="btn-ghost">Recitește teoria <i class="fa-solid fa-book"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= FOOTER ======= -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-logo"><i class="fa-solid fa-dna"></i> EndoGhid</div>
+                <p>Platformă educațională interactivă despre Sistemul Endocrin — creată pentru elevi de liceu.</p>
+            </div>
+            <div class="footer-links">
+                <h5>Secțiuni</h5>
+                <a href="#intro">Introducere</a>
+                <a href="#hormoni">Hormoni</a>
+                <a href="#mecanism">Mecanism</a>
+                <a href="#glande">Glande</a>
+                <a href="#boli">Boli</a>
+                <a href="#quiz">Quiz</a>
+            </div>
+            <div class="footer-info">
+                <h5>Informații</h5>
+                <p>Materie: Biologie</p>
+                <p>Nivel: Liceu (cls. X-XI)</p>
+                <p>Capitol: Sistemul Endocrin</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Made with <i class="fa-solid fa-heart" style="color:#ec4899"></i> de <strong>[Numele Tău]</strong> · Proiect Educațional de Biologie</p>
+        </div>
+    </div>
+</footer>
+
+<!-- ======= GLAND MODAL ======= -->
+<div class="gland-modal-overlay" id="gland-modal-overlay" onclick="closeGlandModal()">
+    <div class="gland-modal glass-card" id="gland-modal" onclick="event.stopPropagation()">
+        <button class="modal-close" onclick="closeGlandModal()"><i class="fa-solid fa-xmark"></i></button>
+        <div class="modal-inner" id="modal-inner"></div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
