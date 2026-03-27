@@ -101,8 +101,10 @@
         <li><a href="#intro">Introducere</a></li>
         <li><a href="#hormoni">Hormoni</a></li>
         <li><a href="#mecanism">Mecanism</a></li>
+        <li><a href="#simulator">🩸 Simulator</a></li>
         <li><a href="#glande">Glande</a></li>
         <li><a href="#boli">Boli</a></li>
+        <li><a href="#dictionar">Dicționar</a></li>
         <li><a href="#quiz">Quiz</a></li>
     </ul>
     <div class="nav-controls">
@@ -124,7 +126,7 @@
 <section class="hero" id="hero">
     <div class="hero-particles" id="hero-particles"></div>
     <div class="hero-content">
-        <div class="hero-badge reveal">🧬 Biologie · Clasa a X-a</div>
+        <div class="hero-badge reveal">🧬 Biologie · Clasa a XI-a</div>
         <h1 class="hero-title">
             <span class="reveal delay-1">Sistemul</span>
             <span class="hero-gradient reveal delay-2">Endocrin</span>
@@ -345,6 +347,133 @@
     </div>
 </section>
 
+<!-- ======= SECTION 3.5: SIMULATOR GLICEMIE ======= -->
+<section class="section" id="simulator">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-tag">03.5 · Simulator</div>
+            <h2>🩸 Simulator Glicemie</h2>
+            <p class="section-desc">Mișcă slider-ul și urmărește cum corpul tău răspunde în timp real la modificările nivelului de zahăr din sânge.</p>
+        </div>
+
+        <div class="sim-layout">
+            <!-- Left: controls -->
+            <div class="sim-controls glass-card reveal delay-1">
+                <div class="sim-meter-wrap">
+                    <div class="sim-meter" id="sim-meter">
+                        <div class="meter-value" id="meter-value">90</div>
+                        <div class="meter-unit">mg/dL</div>
+                        <div class="meter-status" id="meter-status">Normal</div>
+                    </div>
+                    <div class="meter-zones">
+                        <span class="mz mz-low">Hipoglicemie</span>
+                        <span class="mz mz-normal">Normal</span>
+                        <span class="mz mz-high">Hiperglicemie</span>
+                    </div>
+                </div>
+
+                <div class="sim-slider-wrap">
+                    <label class="sim-label"><i class="fa-solid fa-droplet" style="color:#ef4444"></i> Nivel Glucoză</label>
+                    <div class="slider-track-custom">
+                        <div class="slider-fill" id="slider-fill"></div>
+                        <input type="range" id="glucose-slider"
+                               min="40" max="300" value="90" step="1"
+                               class="glucose-slider"
+                               oninput="updateGlycemiaSimulator(this.value)">
+                        <div class="slider-thumb-label" id="slider-thumb-label">90</div>
+                    </div>
+                    <div class="slider-range-labels">
+                        <span>40 mg/dL</span>
+                        <span>70</span>
+                        <span>100</span>
+                        <span>180</span>
+                        <span>300 mg/dL</span>
+                    </div>
+                </div>
+
+                <div class="sim-quick-btns">
+                    <button class="sqb sqb-low" onclick="setGlucose(55)">🔻 Hipoglicemie (55)</button>
+                    <button class="sqb sqb-normal" onclick="setGlucose(90)">✅ Normal (90)</button>
+                    <button class="sqb sqb-high" onclick="setGlucose(220)">🔺 Hiperglicemie (220)</button>
+                </div>
+            </div>
+
+            <!-- Center: body response -->
+            <div class="sim-response reveal delay-2">
+                <!-- Hormone display -->
+                <div class="sim-hormone glass-card" id="sim-hormone">
+                    <div class="sh-header">
+                        <div class="sh-gland" id="sh-gland">🫀 Pancreas</div>
+                        <div class="sh-cells" id="sh-cells">Celule α</div>
+                    </div>
+                    <div class="sh-body">
+                        <div class="sh-hormone-icon" id="sh-hormone-icon">💊</div>
+                        <div class="sh-hormone-name" id="sh-hormone-name">Glucagon</div>
+                        <div class="sh-arrow-anim" id="sh-anim-dots">
+                            <span class="dot-pulse"></span>
+                            <span class="dot-pulse dp2"></span>
+                            <span class="dot-pulse dp3"></span>
+                        </div>
+                        <div class="sh-target" id="sh-target">
+                            <i class="fa-solid fa-arrow-down" id="sh-arrow-icon"></i>
+                            <span id="sh-target-text">→ Ficat: eliberează glucoză</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feedback loop visual -->
+                <div class="sim-loop glass-card" id="sim-loop">
+                    <div class="loop-title">📡 Feedback Loop Activ</div>
+                    <div class="loop-steps" id="loop-steps">
+                        <div class="ls active" id="ls1"><span class="ls-num">1</span><span class="ls-text">Glucoză scăzută detectată</span></div>
+                        <div class="ls-arrow">↓</div>
+                        <div class="ls" id="ls2"><span class="ls-num">2</span><span class="ls-text">Celule α pancreatice activate</span></div>
+                        <div class="ls-arrow">↓</div>
+                        <div class="ls" id="ls3"><span class="ls-num">3</span><span class="ls-text">Glucagon eliberat în sânge</span></div>
+                        <div class="ls-arrow">↓</div>
+                        <div class="ls" id="ls4"><span class="ls-num">4</span><span class="ls-text">Ficatul eliberează glucoză</span></div>
+                        <div class="ls-arrow">↓</div>
+                        <div class="ls" id="ls5"><span class="ls-num">5</span><span class="ls-text">Glicemia revine la normal ✓</span></div>
+                    </div>
+                </div>
+
+                <!-- Context card -->
+                <div class="sim-context glass-card" id="sim-context">
+                    <div class="sc-icon" id="sc-icon">⚠️</div>
+                    <div class="sc-text" id="sc-text">
+                        <strong id="sc-title">Hipoglicemie!</strong>
+                        <p id="sc-desc">Nivelul glucozei a scăzut sub 70 mg/dL. Simptome: tremur, transpirație, confuzie. Pancreasul secretă glucagon de urgență.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: live chart -->
+            <div class="sim-chart-wrap glass-card reveal delay-3">
+                <div class="chart-header">
+                    <span class="chart-title"><i class="fa-solid fa-chart-line"></i> Grafic Glicemie în Timp Real</span>
+                    <button class="btn-small" onclick="resetSimChart()"><i class="fa-solid fa-rotate-right"></i></button>
+                </div>
+                <canvas id="sim-chart" class="sim-chart-canvas"></canvas>
+                <div class="chart-legend">
+                    <span><span class="cl-dot" style="background:#10b981"></span> Zonă normală (70-180)</span>
+                    <span><span class="cl-dot" style="background:#ef4444"></span> Nivelul tău</span>
+                </div>
+                <div class="chart-reading">
+                    Ultima valoare: <strong id="chart-last-val">90 mg/dL</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Organs response grid -->
+        <div class="organs-response reveal" id="organs-response">
+            <h3 class="or-title"><i class="fa-solid fa-sitemap"></i> Cum Răspund Organele</h3>
+            <div class="or-grid" id="or-grid">
+                <!-- filled by JS -->
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ======= SECTION 4: GLANDE ======= -->
 <section class="section section-alt" id="glande">
     <div class="container">
@@ -461,97 +590,54 @@
                 <p class="diagram-hint"><i class="fa-solid fa-hand-pointer"></i> Apasă pe un punct luminos</p>
             </div>
 
-            <!-- Glande cards right -->
-            <div class="glande-cards">
-                <div class="gland-card glass-card reveal delay-1" onclick="openGlandModal('hipotalamus')">
-                    <div class="gc-icon" style="background:linear-gradient(135deg,#ec4899,#8b5cf6)"><i class="fa-solid fa-brain"></i></div>
-                    <div class="gc-info">
-                        <h4>Hipotalamus</h4>
-                        <p>Comandantul sistemului endocrin — controlează hipofiza</p>
-                        <div class="gc-tags"><span class="tag">TRH</span><span class="tag">CRH</span><span class="tag">Oxitocină</span></div>
-                    </div>
-                    <i class="fa-solid fa-chevron-right gc-arrow"></i>
+            <!-- Glande grid compact -->
+            <div class="glande-grid-compact">
+                <div class="gg-card glass-card reveal delay-1" onclick="openGlandModal('hipotalamus')">
+                    <div class="gg-icon" style="background:linear-gradient(135deg,#ec4899,#8b5cf6)"><i class="fa-solid fa-brain"></i></div>
+                    <div class="gg-name">Hipotalamus</div>
+                    <div class="gg-tags"><span class="tag">TRH</span><span class="tag">CRH</span><span class="tag">Oxitocină</span></div>
                 </div>
-
-                <div class="gland-card glass-card reveal delay-2" onclick="openGlandModal('hipofiza')">
-                    <div class="gc-icon" style="background:linear-gradient(135deg,#8b5cf6,#3b82f6)"><i class="fa-solid fa-crown"></i></div>
-                    <div class="gc-info">
-                        <h4>Hipofiza (Hipofiză)</h4>
-                        <p>"Glanda șefă" — controlează celelalte glande</p>
-                        <div class="gc-tags"><span class="tag">GH</span><span class="tag">TSH</span><span class="tag">Prolactină</span></div>
-                    </div>
-                    <i class="fa-solid fa-chevron-right gc-arrow"></i>
+                <div class="gg-card glass-card reveal delay-2" onclick="openGlandModal('hipofiza')">
+                    <div class="gg-icon" style="background:linear-gradient(135deg,#8b5cf6,#3b82f6)"><i class="fa-solid fa-crown"></i></div>
+                    <div class="gg-name">Hipofiza</div>
+                    <div class="gg-tags"><span class="tag">GH</span><span class="tag">TSH</span><span class="tag">Prolactină</span></div>
                 </div>
-
-                <div class="gland-card glass-card reveal delay-3" onclick="openGlandModal('tiroida')">
-                    <div class="gc-icon" style="background:linear-gradient(135deg,#06b6d4,#10b981)"><i class="fa-solid fa-bolt"></i></div>
-                    <div class="gc-info">
-                        <h4>Glanda Tiroidă</h4>
-                        <p>Reglează metabolismul și energia</p>
-                        <div class="gc-tags"><span class="tag">T3</span><span class="tag">T4</span><span class="tag">Calcitonină</span></div>
-                    </div>
-                    <i class="fa-solid fa-chevron-right gc-arrow"></i>
+                <div class="gg-card glass-card reveal delay-3" onclick="openGlandModal('tiroida')">
+                    <div class="gg-icon" style="background:linear-gradient(135deg,#06b6d4,#10b981)"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="gg-name">Tiroida</div>
+                    <div class="gg-tags"><span class="tag">T3</span><span class="tag">T4</span><span class="tag">Calcitonină</span></div>
                 </div>
-
-                <div class="gland-card glass-card reveal delay-4" onclick="openGlandModal('paratiroide')">
-                    <div class="gc-icon" style="background:linear-gradient(135deg,#eab308,#f97316)"><i class="fa-solid fa-bone"></i></div>
-                    <div class="gc-info">
-                        <h4>Glandele Paratiroide</h4>
-                        <p>Controlează calciul și sănătatea oaselor</p>
-                        <div class="gc-tags"><span class="tag">PTH</span></div>
-                    </div>
-                    <i class="fa-solid fa-chevron-right gc-arrow"></i>
+                <div class="gg-card glass-card reveal delay-4" onclick="openGlandModal('paratiroide')">
+                    <div class="gg-icon" style="background:linear-gradient(135deg,#eab308,#f97316)"><i class="fa-solid fa-bone"></i></div>
+                    <div class="gg-name">Paratiroide</div>
+                    <div class="gg-tags"><span class="tag">PTH</span></div>
                 </div>
-
-                <div class="gland-card glass-card reveal delay-5" onclick="openGlandModal('suprarenale')">
-                    <div class="gc-icon" style="background:linear-gradient(135deg,#ef4444,#f97316)"><i class="fa-solid fa-fire"></i></div>
-                    <div class="gc-info">
-                        <h4>Glandele Suprarenale</h4>
-                        <p>„Luptă sau fugi" — răspuns la stres</p>
-                        <div class="gc-tags"><span class="tag">Adrenalină</span><span class="tag">Cortizol</span><span class="tag">Aldosteron</span></div>
-                    </div>
-                    <i class="fa-solid fa-chevron-right gc-arrow"></i>
+                <div class="gg-card glass-card reveal delay-5" onclick="openGlandModal('suprarenale')">
+                    <div class="gg-icon" style="background:linear-gradient(135deg,#ef4444,#f97316)"><i class="fa-solid fa-fire"></i></div>
+                    <div class="gg-name">Suprarenale</div>
+                    <div class="gg-tags"><span class="tag">Adrenalină</span><span class="tag">Cortizol</span></div>
                 </div>
-
-                <div class="gland-card glass-card reveal delay-6" onclick="openGlandModal('pancreas')">
-                    <div class="gc-icon" style="background:linear-gradient(135deg,#f97316,#eab308)"><i class="fa-solid fa-droplet"></i></div>
-                    <div class="gc-info">
-                        <h4>Pancreasul Endocrin</h4>
-                        <p>Controlează glicemia</p>
-                        <div class="gc-tags"><span class="tag">Insulină</span><span class="tag">Glucagon</span></div>
-                    </div>
-                    <i class="fa-solid fa-chevron-right gc-arrow"></i>
+                <div class="gg-card glass-card reveal delay-6" onclick="openGlandModal('pancreas')">
+                    <div class="gg-icon" style="background:linear-gradient(135deg,#f97316,#eab308)"><i class="fa-solid fa-droplet"></i></div>
+                    <div class="gg-name">Pancreas</div>
+                    <div class="gg-tags"><span class="tag">Insulină</span><span class="tag">Glucagon</span></div>
                 </div>
-
-                <div class="gland-card glass-card reveal delay-1" onclick="openGlandModal('gonade')">
-                    <div class="gc-icon" style="background:linear-gradient(135deg,#ec4899,#f97316)"><i class="fa-solid fa-venus-mars"></i></div>
-                    <div class="gc-info">
-                        <h4>Gonadele</h4>
-                        <p>Hormoni sexuali și reproducere</p>
-                        <div class="gc-tags"><span class="tag">Estrogen</span><span class="tag">Progesteron</span><span class="tag">Testosteron</span></div>
-                    </div>
-                    <i class="fa-solid fa-chevron-right gc-arrow"></i>
+                <div class="gg-card glass-card reveal delay-1" onclick="openGlandModal('gonade')">
+                    <div class="gg-icon" style="background:linear-gradient(135deg,#ec4899,#f97316)"><i class="fa-solid fa-venus-mars"></i></div>
+                    <div class="gg-name">Gonade</div>
+                    <div class="gg-tags"><span class="tag">Estrogen</span><span class="tag">Testosteron</span></div>
                 </div>
-
-                <div class="gland-card glass-card reveal delay-2" onclick="openGlandModal('epifiza')">
-                    <div class="gc-icon" style="background:linear-gradient(135deg,#a78bfa,#8b5cf6)"><i class="fa-solid fa-moon"></i></div>
-                    <div class="gc-info">
-                        <h4>Epifiza (Glanda Pineală)</h4>
-                        <p>Controlează ritmul somn-veghe</p>
-                        <div class="gc-tags"><span class="tag">Melatonină</span></div>
-                    </div>
-                    <i class="fa-solid fa-chevron-right gc-arrow"></i>
+                <div class="gg-card glass-card reveal delay-2" onclick="openGlandModal('epifiza')">
+                    <div class="gg-icon" style="background:linear-gradient(135deg,#a78bfa,#8b5cf6)"><i class="fa-solid fa-moon"></i></div>
+                    <div class="gg-name">Epifiza</div>
+                    <div class="gg-tags"><span class="tag">Melatonină</span></div>
                 </div>
-
-                <div class="gland-card glass-card reveal delay-3" onclick="openGlandModal('timus')">
-                    <div class="gc-icon" style="background:linear-gradient(135deg,#10b981,#06b6d4)"><i class="fa-solid fa-shield-halved"></i></div>
-                    <div class="gc-info">
-                        <h4>Timusul</h4>
-                        <p>Educă celulele imune T</p>
-                        <div class="gc-tags"><span class="tag">Timozină</span><span class="tag">Timopoietină</span></div>
-                    </div>
-                    <i class="fa-solid fa-chevron-right gc-arrow"></i>
+                <div class="gg-card glass-card reveal delay-3" onclick="openGlandModal('timus')">
+                    <div class="gg-icon" style="background:linear-gradient(135deg,#10b981,#06b6d4)"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="gg-name">Timus</div>
+                    <div class="gg-tags"><span class="tag">Timozină</span></div>
                 </div>
+                <div class="gg-hint"><i class="fa-solid fa-hand-pointer"></i> Click pe orice glandă pentru detalii complete</div>
             </div>
         </div>
     </div>
@@ -657,6 +743,33 @@
                 </div>
             </div>
         </div>
+        </div>
+    </div>
+</section>
+
+<!-- ======= SECTION 5.5: DICȚIONAR ======= -->
+<section class="section" id="dictionar">
+    <div class="container">
+        <div class="section-header reveal">
+            <div class="section-tag">05.5 · Vocabular</div>
+            <h2>📚 Dicționar Medical</h2>
+            <p class="section-desc">Termenii mai complicați explicați simplu. Caută un cuvânt pentru a înțelege exact ce înseamnă.</p>
+        </div>
+
+        <div class="dict-search reveal delay-1">
+            <i class="fa-solid fa-magnifying-glass dict-search-icon"></i>
+            <input type="text" id="dict-search-input" placeholder="Caută un termen medical... (ex: Homeostazie)" onkeyup="filterDict()">
+            <button class="dict-clear" id="dict-clear" onclick="clearDictSearch()" style="display:none;"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="dict-grid" id="dict-grid">
+            <!-- Filled by JS -->
+        </div>
+        
+        <div class="dict-empty" id="dict-empty" style="display:none;">
+            <i class="fa-solid fa-ghost"></i>
+            <p>Nu am găsit niciun termen. Încearcă alt cuvânt!</p>
+        </div>
     </div>
 </section>
 
@@ -727,12 +840,12 @@
             <div class="footer-info">
                 <h5>Informații</h5>
                 <p>Materie: Biologie</p>
-                <p>Nivel: Liceu (cls. X-XI)</p>
+                <p>Nivel: Liceu (cls. XI)</p>
                 <p>Capitol: Sistemul Endocrin</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>Made with <i class="fa-solid fa-heart" style="color:#ec4899"></i> de <strong>[Numele Tău]</strong> · Proiect Educațional de Biologie</p>
+            <p>Made with <i class="fa-solid fa-heart" style="color:#ec4899"></i> de <strong>Diaconu Mihaia si Anonio Todeila</strong> · Proiect Educațional de Biologie</p>
         </div>
     </div>
 </footer>

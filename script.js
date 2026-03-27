@@ -11,120 +11,120 @@
 const GLANDS_DATA = {
     hipotalamus: {
         name: "Hipotalamusul",
-        subtitle: "Comandantul Sistemului Endocrin",
+        subtitle: "Comandantul Sistemului",
         icon: "fa-brain",
         gradient: "linear-gradient(135deg, #ec4899, #8b5cf6)",
-        location: "La baza creierului, deasupra hipofizei. Face parte din diencefal.",
-        description_student: "Hipotalamusul este ca un general care coordonează toată armata endocrină. El primește semnale de la creier și corp, și le traduce în comenzi hormonale. Este centrul de control al hipofizei — glanda principală.",
-        description_advanced: "Hipotalamusul integrează semnale neurogenice, termice, osmotice și feedback-uri hormonale. Secretă hormoni de eliberare (TRH, CRH, GnRH, GHRH, dopamină) și hormoni inhibitori care reglează hipofiza anterioară prin sistemul port-hipotalamo-hipofizar. Produce, de asemenea, ADH și oxitocina, depozitate în neuro-hipofiza.",
-        hormones: ["TRH (Tireotropin-Releasing Hormone)", "CRH (Corticotropin-Releasing Hormone)", "GnRH (Gonadotropin-Releasing Hormone)", "GHRH (Growth Hormone-Releasing Hormone)", "Oxitocina", "ADH (Vasopresina)"],
+        location: "La baza creierului.",
+        description_student: "Hipotalamusul este centrul de comandă. Trimite semnale către hipofiză pentru a controla restul glandelor.",
+        description_advanced: "Integrează semnale neurogenice și termice. Secretă hormoni de eliberare (TRH, CRH) pentru a regla hipofiza anterioară și produce ADH + oxitocină.",
+        hormones: ["TRH", "CRH", "GnRH", "Oxitocina", "ADH"],
         hormone_color: "#ec4899",
-        effects: "Controlul glandelor hipofizare → reglarea indirectă a tiroidei, cortexului suprarenal, gonadelor; reglarea temperaturii corporale, a apetitului, setei, somnului și comportamentului social.",
-        fun_fact: "🧠 Hipotalamusul are dimensiunea unui bob de mazăre mare (~4g) dar controlează aproape toate funcțiile vitale ale corpului — de la foame și sete până la ciclul menstrual!"
+        effects: "Reglează temperatura, setea, somnul și controlează hipofiza.",
+        fun_fact: "🧠 Dimensiunea unui bob de mazăre, dar controlează tot corpul!"
     },
     hipofiza: {
-        name: "Hipofiza (Glanda Pituitară)",
-        subtitle: "Glanda Șefă a Sistemului Endocrin",
+        name: "Hipofiza",
+        subtitle: "Glanda Șefă",
         icon: "fa-crown",
         gradient: "linear-gradient(135deg, #8b5cf6, #3b82f6)",
-        location: "În șaua turcească a osului sfenoid, conectată la hipotalamus prin tijă hipofizară.",
-        description_student: "Hipofiza este 'glanda șefă' — preia comenzile de la hipotalamus și le trimite mai departe celorlalte glande din corp. Are două lobi: anterioară (adenohipofiza) și posterioară (neurohipofiza). De dimensiunea unui bob de mazăre!",
-        description_advanced: "Adenohipofiza secretă GH, TSH, ACTH, FSH, LH, prolactina — controlate de hormonii hipotalamici. Neurohipofiza stochează și eliberează ADH (vasopresina) și oxitocina produse de hipotalamus. Reglarea se face prin bucle de feedback negativ scurt (hipofizotrop → hipofiziar) și lung (hormon periferic → hipotalamus/hipofiza).",
-        hormones: ["GH (Hormon de Creștere)", "TSH (Stimulent Tiroidian)", "ACTH (Corticotrop)", "FSH (Foliculo-Stimulant)", "LH (Luteinizant)", "Prolactina", "ADH / Vasopresina", "Oxitocina"],
+        location: "Sub hipotalamus (baza creierului).",
+        description_student: "Glanda care preia comenzile de la creier și le trimite glandelor din corp (tiroidă, suprarenale, gonade).",
+        description_advanced: "Adenohipofiza secretă hormoni stimulatori (TSH, ACTH, FSH). Neurohipofiza eliberează hormonii stocați de la hipotalamus (ADH).",
+        hormones: ["GH", "TSH", "ACTH", "FSH", "LH", "Prolactina"],
         hormone_color: "#8b5cf6",
-        effects: "GH: creștere și metabolism; TSH: stimulează tiroida; ACTH: stimulează cortexul suprarenal; FSH/LH: funcția gonadică; Prolactina: lactație; ADH: retenție apă; Oxitocina: contracții uterine, lactație.",
-        fun_fact: "👑 Hipofiza cântărește 0.5-0.6g — mai puțin decât o gumă de mestecat — dar controlează creșterea, reproducerea, metabolismul și răspunsul la stres simultan!"
+        effects: "Controlează creșterea și metabolismul celorlalte glande.",
+        fun_fact: "👑 Deși are doar ~0.5 grame, este șefa sistemului endocrin!"
     },
     tiroida: {
-        name: "Glanda Tiroidă",
-        subtitle: "Regulatorul Metabolismului",
+        name: "Tiroida",
+        subtitle: "Regulatorul Energiei",
         icon: "fa-bolt",
         gradient: "linear-gradient(135deg, #06b6d4, #10b981)",
-        location: "Parte anterioară a gâtului, în fața cartilajului cricoid. Formă de fluture. Greutate: ~20-25g.",
-        description_student: "Tiroida este glanda care controlează cât de rapid sau lent funcționează metabolismul tău. Produce hormoni tiroidieni (T3 și T4) care reglează energia, temperatura, ritmul cardiac și creșterea. Are nevoie de iod din alimentație!",
-        description_advanced: "Celulele foliculare sintetizează tiroglobulina → iodinată de peroxidaza tiroidiană (TPO) → formare MIT, DIT → cuplare → T3 (triiodotironina, activ) și T4 (tiroxina). T4 se converteste periferic la T3 de 5'-deiodinaze. Celulele parafoliculare (C) secretă calcitonina. Reglare: axa hipotalamus(TRH) → hipofiza(TSH) → tiroidă(T3/T4) cu feedback negativ.",
-        hormones: ["T3 (Triiodotironina) — hormon activ", "T4 (Tiroxina) — forma de stocare/transport", "Calcitonina — scade calcemia"],
+        location: "La baza gâtului, formă de fluture.",
+        description_student: "Tiroida controlează cât de repede arzi caloriile și câtă energie ai. Are nevoie de iod pentru a funcționa.",
+        description_advanced: "Sintetizează T3/T4 sub acțiunea TSH. Celulele C parafoliculare eliberează calcitonina pentru a scădea calciul.",
+        hormones: ["T3", "T4", "Calcitonina"],
         hormone_color: "#06b6d4",
-        effects: "T3/T4: cresc metabolismul bazal, temperatura, FC, sinteza proteică și maturarea SNC la fetus; Calcitonina: inhibă osteoelastele, scade calcemia.",
-        fun_fact: "🦋 Tiroida seamănă cu un fluture! Cei ~600 milioane de foliculi ai ei stochează suficienți hormoni pentru 3-4 luni de nevoie — ca o baterie biologică!"
+        effects: "Reglează metabolismul bazal, temperatura ritmul cardiac.",
+        fun_fact: "🦋 Poate stoca hormoni suficienți pentru 3-4 luni!"
     },
     paratiroide: {
-        name: "Glandele Paratiroide",
-        subtitle: "Gardianul Calcemiei",
+        name: "Paratiroide",
+        subtitle: "Gardienii Calciului",
         icon: "fa-bone",
         gradient: "linear-gradient(135deg, #eab308, #f97316)",
-        location: "Patru glande mici (2x2) situate pe fața posterioară a tiroidei. Dimensiunea unui bob de orez fiecare.",
-        description_student: "Glandele paratiroide reglează nivelul de calciu din sânge — esențial pentru contracția musculară, funcția nervilor și sănătatea oaselor. Când calciul scade, ele produc PTH care mobilizează calciul din oase.",
-        description_advanced: "PTH (parathormon): crescut de hipocalcemie → activează osteoclastele (resorbtie osoasa), creste reabsorbtia tubulara renala de Ca²⁺, stimuleaza conversia 25-OH vitamina D → 1,25(OH)₂D (calcitriol) care creste absorbtia intestinala de Ca²⁺. Acțiune antagonista calcitoninei tiroidiene. Reglare: receptor sensibil la Ca²⁺ (CaSR) pe celulele principale paratiroidiene.",
-        hormones: ["PTH (Parahormon/Parathormon) — crește calcemia"],
+        location: "Patru puncte mici pe spatele tiroidei.",
+        description_student: "Controlează nivelul de calciu din sânge, esențial pentru oase puternice și funcția mușchilor.",
+        description_advanced: "Secretă PTH la scăderea calcemiei, stimulând resorbția osoasă și activarea vitaminei D în rinichi.",
+        hormones: ["PTH (Parathormon)"],
         hormone_color: "#eab308",
-        effects: "Menținerea calcemiei la 8.5-10.5 mg/dL; activarea vitaminei D; reglarea fosforemiei (efect fosfaturic renal); controlul sănătății osoase.",
-        fun_fact: "🦴 Glandele paratiroide au fost descoperite abia în 1880! Chirurgii care scoteau tiroida și lezau accidental paratiroidele nu înțelegeau de ce pacienții aveau convulsii fatale — era hipocalcemia!"
+        effects: "Crește și menține calciul din sânge la nivel optim.",
+        fun_fact: "🦴 Fiecare are dimensiunea unui bob de orez!"
     },
     suprarenale: {
-        name: "Glandele Suprarenale",
-        subtitle: "Glandele de Urgență — Luptă sau Fugi",
+        name: "Suprarenale",
+        subtitle: "Glandele de Stres",
         icon: "fa-fire",
         gradient: "linear-gradient(135deg, #ef4444, #f97316)",
-        location: "Situate deasupra fiecărui rinichi, în spațiul retroperitoneal. Formă piramidala.",
-        description_student: "Glandele suprarenale sunt glandele de urgentă ale corpului! Când ești în pericol, produc adrenalina → ritmul cardiac crește, mușchii primesc mai mult sânge, ești pregătit să fugi sau să lupți. Produc și cortizol — hormonul stresului cronic.",
-        description_advanced: "Corticosuprarenala (cortex, 3 zone): Zona glomerulosa → Aldosteron (mineralocorticoizi, sub RAAS); Zona fasciculata → Cortizol (glucocorticoizi, sub ACTH); Zona reticularis → Androgeni suprarenali (DHEA). Medulosuprarenala (derivat de creastă neurala) → Adrenalina (80%) și Noradrenalina (20%) — catecolamine eliberate la stimulare simpatica.",
-        hormones: ["Adrenalina (Epinefrina)", "Noradrenalina (Norepinefrina)", "Cortizol", "Aldosteron", "DHEA (androgen suprarenal)"],
+        location: "Deasupra fiecărui rinichi.",
+        description_student: "Produc adrenalina pentru momentele de urgență (luptă sau fugi) și cortizolul pentru stresul zilnic.",
+        description_advanced: "Cortexul secretă aldosteron, cortizol și androgeni. Medula secretă catecolamine (adrenalină, noradrenalină).",
+        hormones: ["Adrenalina", "Cortizol", "Aldosteron"],
         hormone_color: "#ef4444",
-        effects: "Adrenalina: creste FC, PA, bronhodilatatie, glicemie (raspuns acut la stres); Cortizol: mobilizeaza glucoza, antiinflamator, imunosupresor (stres cronic); Aldosteron: retentie Na⁺ si apa → creste TA.",
-        fun_fact: "⚡ Adrenalina acționează în 0.2 secunde de la eliberare! Poate creste forța musculara cu 20-30% — explicand poveștile de oameni care ridica mașini în situații de urgenta extrema."
+        effects: "Crește pulsul, eliberează glucoza și reglează tensiunea arterială.",
+        fun_fact: "⚡ Adrenalina acționează în doar 0.2 secunde!"
     },
     pancreas: {
-        name: "Pancreasul Endocrin",
-        subtitle: "Regulatorul Glicemiei",
+        name: "Pancreas",
+        subtitle: "Controlul Glicemiei",
         icon: "fa-droplet",
         gradient: "linear-gradient(135deg, #f97316, #eab308)",
-        location: "Glanda mixtă (exocrină + endocrină) situată în spatele stomacului, în C-ul duodenal.",
-        description_student: "Pancreasul are o parte 'secretă' — insulele Langerhans — care controlează zaharul din sânge. Insulina scade glicemia (transporta glucoza în celule), glucagonul o creste (eliberaza glucoza din ficat). Diabetul apare cand insulina lipseste sau nu funcționeaza.",
-        description_advanced: "Insulele Langerhans (1-2% din pancreas): Celule β (60-70%) → insulina și amilina; Celule α (20-25%) → glucagon; Celule δ → somatostatina; Celule PP → polipeptid pancreatic. Insulina: activează GLUT-4 în mușchi/tesut adipos, stimulează glicogeneza, lipogeneza; inhibă glicogenoliza. Glucagonul: stimuleaza glicogenoliza și gluconeogeneza hepatica. Reglare: glicemia, aminoacizii, incretinele (GLP-1, GIP).",
-        hormones: ["Insulina — scade glicemia", "Glucagon — creste glicemia", "Somatostatina — inhibitor local", "Amilina — frânează absorbție glucoza"],
+        location: "În spatele stomacului.",
+        description_student: "Produce insulina pentru a scădea zahărul din sânge și glucagonul pentru a-l crește atunci când îți e foame.",
+        description_advanced: "Insulele Langerhans (celule β) secretă insulina, activând GLUT-4. Celulele α secretă glucagon, stimulând glicogenoliza.",
+        hormones: ["Insulina", "Glucagon"],
         hormone_color: "#f97316",
-        effects: "Menținerea glicemiei la 70-100 mg/dL (jeun); reglarea metabolismului glucidic, lipidic și proteic; insulina = anabolic hormonal principal.",
-        fun_fact: "💉 Insulina a fost descoperita în 1921 de Banting și Best în Canada. Primul pacient tratat, Leonard Thompson (14 ani, muribund de diabet), s-a recuperat spectaculos în câteva zile — una din cele mai mari descoperiri medicale din istorie!"
+        effects: "Menține glicemia la nivel optim (70-100 mg/dL).",
+        fun_fact: "💉 Insulina a fost descoperită în 1921 — o intervenție care salvează vieți zilnic!"
     },
     gonade: {
-        name: "Gonadele (Ovare + Testicule)",
-        subtitle: "Glandele Reproductive",
+        name: "Gonade",
+        subtitle: "Glandele Sexuale",
         icon: "fa-venus-mars",
         gradient: "linear-gradient(135deg, #ec4899, #f97316)",
-        location: "Ovare: in cavitatea pelviana (femeie). Testicule: exteriorizate in scrot (barbat), temperatura optima 2°C sub temperatura corpului.",
-        description_student: "Gonadele produc hormonii sexuali responsabili de pubertate, caracterele sexuale secundare (pilozitate, voce, sâni) și reproducere. La femei: estrogen și progesteron. La bărbați: testosteron. Ambele sexe produc cantitati mici din hormonii celuilalt sex!",
-        description_advanced: "Ovare — celule teca → androgeni → aromatizate de celule granuloase → Estrogeni (E2 dominant); corpul galben → Progesteron. Testicule — celule Leydig (sub LH) → Testosteron; celule Sertoli (sub FSH) → sprijin spermatogeneza, inhibina. Reglare: axa HPG — GnRH → FSH/LH → steroizi sexuali; feedback negativ si pozitiv (ovulatie) la femei.",
-        hormones: ["Estrogeni (Estradiol, Estrona, Estriol)", "Progesteron", "Testosteron", "Inhibina", "AMH (hormon anti-Mullerian)"],
+        location: "Ovare (femei) / Testicule (bărbați).",
+        description_student: "Produc hormonii sexuali care aduc schimbările de la pubertate și ajută la reproducere.",
+        description_advanced: "Ovarele produc estrogen și progesteron. Testiculele produc testosteron. Ambele sunt controlate de FSH/LH hipofizar.",
+        hormones: ["Estrogen", "Progesteron", "Testosteron"],
         hormone_color: "#ec4899",
-        effects: "Dezvoltare caractere sexuale secundare; controlul ciclului menstrual (estrogen + progesteron); spermatogeneza și libido (testosteron); mineralizare osoasa; distribuția tesutului adipos.",
-        fun_fact: "♀♂ Bărbații produc mici cantitati de estrogen (din conversia testosteronul), iar femeile produc testosteron suprarenal. Diferenta este în proportii — nu în absenta totala a unui hormon!"
+        effects: "Dezvoltarea caracterelor sexuale, controlul ciclului menstrual și pubertatea.",
+        fun_fact: "♀♂ Ambele sexe produc și mici cantități din hormonii celuilalt sex!"
     },
     epifiza: {
-        name: "Epifiza (Glanda Pineală)",
-        subtitle: "Ceasul Biologic al Corpului",
+        name: "Epifiza (Pineală)",
+        subtitle: "Ceasul Biologic",
         icon: "fa-moon",
         gradient: "linear-gradient(135deg, #a78bfa, #8b5cf6)",
-        location: "Epitalamus, între hemisferele cerebrale. Formă de con de pin — de unde vine numele (lat. pinea = con de pin).",
-        description_student: "Epifiza este 'ceasul biologic' al corpului — produce melatonina, hormonul care reglează somnul. Când se întunecă, produce mai multă melatonina → ți-e somn. Lumina albastră de la telefon noaptea blochează melatonina!",
-        description_advanced: "Fotoreceptori retinieni → tract retinohipotalamic → nucleul suprachiasmatic (NSC) → ganglion cervical superior → epifiza → pinealocite sintetizeaza melatonina din triptofan → serotonina → N-acetilserotonina → melatonina (N-acetil-5-metoxitriptamina). Ritm circadian: maxim 2-4h, minim la prânz. Reglare sezoniera a reproducerii la animale mamifere.",
-        hormones: ["Melatonina — hormonul somnului"],
+        location: "În centrul creierului.",
+        description_student: "Produce hormonul somnului (melatonina) când se întunecă afară. Lumina de la telefoane o dă peste cap!",
+        description_advanced: "Transformă serotonina în melatonina exclusiv noaptea, comunicând ritmul circadian întregului corp.",
+        hormones: ["Melatonina"],
         hormone_color: "#a78bfa",
-        effects: "Reglarea ritmului circadian (ciclul somn-veghe 24h); efecte antioxidante; reglarea sezoniera a reproducerii la mamifere; posibile efecte imunomodulatoare.",
-        fun_fact: "🌙 Filozoful René Descartes credea că epifiza este 'sediul sufletului'! Deși nu confirmat, epifiza rămâne misterioasă — calcifierea ei cu vârsta este normală dar nu este pe deplin înțeleasă."
+        effects: "Reglează ciclul somn-veghe de 24 de ore.",
+        fun_fact: "🌙 Descartes credea că aici este 'sediul sufletului'!"
     },
     timus: {
         name: "Timusul",
-        subtitle: "Școala Celulelor Imune",
+        subtitle: "Tabăra de Antrenament",
         icon: "fa-shield-halved",
         gradient: "linear-gradient(135deg, #10b981, #06b6d4)",
-        location: "Mediastin anterior, retrosternal, deasupra inimii. Cel mai activ în copilarie, involueaza dupa pubertate.",
-        description_student: "Timusul este 'scoala' sistemului imun — educă limfocitele T (celule imune) sa recunoasca agentii patogeni fara sa atace propriul organism. Hormonii timici stimulează maturarea acestor celule protectoare. Este mai mare la copii și se atrofiaza la adulti.",
-        description_advanced: "Timusul este atat organ limfoid primar cat si glada endocrina. Secretă: timozina (α1, β4), timopoietina, timulina — accelereaza diferentierea si maturarea limfocitelor T imature în timus. Procese intratimusice: selectie pozitiva (recunosc MHC self) si selectie negativa (apoptoza autoreactiva). Involutie adipoasa dupa pubertate sub influenta hormonilor sexuali.",
-        hormones: ["Timozina (α1, β4)", "Timopoietina", "Timulina", "Factorul umoral timic (THF)"],
+        location: "În piept, deasupra inimii.",
+        description_student: "Aici sunt educate celulele sistemului imunitar ca să recunoască și să distrugă doar virusurile, nu și corpul tău.",
+        description_advanced: "Stimulează maturarea limfocitelor T. Glanda involuează și e înlocuită de țesut adipos după pubertate.",
+        hormones: ["Timozina"],
         hormone_color: "#10b981",
-        effects: "Maturarea limfocitelor T (helper, citotoxice, reglatoare); educatia imunologica (toleranta self vs non-self); prevenirea bolilor autoimune; imunitate adaptativa.",
-        fun_fact: "🛡️ Fara timus functional (sindrom DiGeorge), copiii nu pot produce limfocite T mature — sistemul imun devine incapabil sa lupte impotriva infectiilor. Timusul este, literalmente, scoala armatei imune!"
+        effects: "Creează armata de globule albe esențială apărării (imunitatea adaptativă).",
+        fun_fact: "🛡️ Este mult mai mare și mai activ în copilărie decât la senectute!"
     }
 };
 
@@ -890,3 +890,421 @@ window.showResult = function() {
     s.textContent = `@keyframes rippleAnim{to{transform:scale(2.5);opacity:0}}`;
     document.head.appendChild(s);
 })();
+
+// =========================================
+// GLYCEMIA SIMULATOR
+// =========================================
+const SIM = {
+    chartHistory: [],
+    chartMax: 40,
+    loopInterval: null,
+    loopStep: 0,
+
+    // State definitions for each glucose range
+    states: {
+        danger: {   // < 55 mg/dL
+            level: 'level-danger', status: '⚠ PERICOL',
+            hormone: 'Glucagon', hormoneIcon: '🔴', cells: 'Celule α (urgență!)',
+            gland: '🫀 Pancreas',
+            target: '🚨 Ficat: mobilizare maximă glucoză',
+            arrowDir: 'fa-arrow-up', arrowColor: '#ef4444',
+            contextIcon: '🚨', contextTitle: 'Hipoglicemie Severă!',
+            contextDesc: 'Nivel critic (<55 mg/dL)! Simptome: confuzie, convulsii, pierderea conștiinței. Glucagonul este secretat la maximum de urgență!',
+            loop: ['⚠️ Glucoză critic scăzută!', '🟥 Celule α activate maxim', '🔴 Glucagon masiv eliberat', '⚡ Ficatul + mușchii mobilizează glucoză', '🔄 Restabilire urgentă'],
+            organs: {
+                'ficat': { active: true, action: '🔺 Eliberează glucoză maxim (glicogenoliză + gluconeogeneză)' },
+                'muschi': { active: true, action: '🔺 Eliberează aminoacizi pentru gluconeogeneză' },
+                'creier': { active: true, action: '⚠️ Deficit energie — funcții cognitive afectate' },
+                'pancreas_alfa': { active: true, action: '🟥 Secreție maximă glucagon' },
+                'pancreas_beta': { active: false, action: '⏸ Inactiv' },
+                'suprarenale': { active: true, action: '⚡ Secreție adrenalină (urgență)' },
+                'rinichi': { active: false, action: 'Normal' },
+            }
+        },
+        low: {      // 55-70 mg/dL
+            level: 'level-low', status: 'Hipoglicemie',
+            hormone: 'Glucagon', hormoneIcon: '🟠', cells: 'Celule α activate',
+            gland: '🫀 Pancreas',
+            target: '↑ Ficat: eliberează glucoză salvată',
+            arrowDir: 'fa-arrow-up', arrowColor: '#f97316',
+            contextIcon: '⚠️', contextTitle: 'Hipoglicemie!',
+            contextDesc: 'Glucoza sub 70 mg/dL. Simptome: tremur, transpirație, foame intensă, slăbiciune. Pancreasul secretă glucagon → ficatul eliberează glucoza stocată (glicogen).',
+            loop: ['Glucoză scăzută detectată', 'Celule α pancreatice activate', 'Glucagon eliberat în sânge', 'Ficatul eliberează glucoză', 'Glicemia revine la normal ✓'],
+            organs: {
+                'ficat': { active: true, action: '🔺 Glicogenoliza activată → eliberează glucoză' },
+                'muschi': { active: false, action: 'Utilizează acizi grași' },
+                'creier': { active: true, action: '🔸 Prioritate pentru glucoză disponibilă' },
+                'pancreas_alfa': { active: true, action: '✅ Secreție glucagon activă' },
+                'pancreas_beta': { active: false, action: '⏸ Insulina inhibată' },
+                'suprarenale': { active: false, action: 'Normal' },
+                'rinichi': { active: false, action: 'Normal' },
+            }
+        },
+        normal: {   // 70-180 mg/dL
+            level: 'level-normal', status: 'Normal',
+            hormone: 'Insulina', hormoneIcon: '🟢', cells: 'Celule β (echilibru)',
+            gland: '🫀 Pancreas',
+            target: '→ Celule: absorb glucoza din sânge',
+            arrowDir: 'fa-arrows-left-right', arrowColor: '#10b981',
+            contextIcon: '✅', contextTitle: 'Glicemie Normală (70-180 mg/dL)',
+            contextDesc: 'Sistemul endocrin este în echilibru. Insulina menține glicemia stabilă — celulele absorb glucoza eficient. Aceasta este homeostazia optimă!',
+            loop: ['Glicemie în interval normal', 'Secreție bazală insulina', 'Glucoza distribuită la celule', 'Ficatul stochează excesul (glicogen)', 'Echilibru homeostatic ✓'],
+            organs: {
+                'ficat': { active: true, action: '✅ Stochează glucoza ca glicogen (glicogeneza)' },
+                'muschi': { active: true, action: '✅ Absorb glucoza pentru energie' },
+                'creier': { active: true, action: '✅ Functioning normal cu glucoză' },
+                'pancreas_alfa': { active: false, action: '⏸ Glucagonul inhibat' },
+                'pancreas_beta': { active: true, action: '✅ Secreție bazală insulina' },
+                'suprarenale': { active: false, action: 'Normal' },
+                'rinichi': { active: false, action: '✅ Prag renal neatingmt' },
+            }
+        },
+        high: {     // 180-300 mg/dL
+            level: 'level-high', status: 'Hiperglicemie',
+            hormone: 'Insulina', hormoneIcon: '🔷', cells: 'Celule β supraactivate',
+            gland: '🫀 Pancreas',
+            target: '↓ Celule: absorb masiv glucoza',
+            arrowDir: 'fa-arrow-down', arrowColor: '#8b5cf6',
+            contextIcon: '🔺', contextTitle: 'Hiperglicemie! (>180 mg/dL)',
+            contextDesc: 'Glucoza crescută dupa masă sau în diabet. Pancreasul secretă insulina masiv. Dacă persistă → complicații renale, vasculare, neurologice pe termen lung.',
+            loop: ['Glucoză crescută detectată', 'Celule β pancreatice activate', 'Insulina eliberată în sânge', 'Celulele absorb glucoza (GLUT-4)', 'Ficatul stochează excesul ✓'],
+            organs: {
+                'ficat': { active: true, action: '🔷 Glicogeneza accelerată → stochează glucoza' },
+                'muschi': { active: true, action: '🔷 Absorbție glucoza crescută (via insulina)' },
+                'creier': { active: false, action: 'Normal — glucoza independentă de insulina' },
+                'pancreas_alfa': { active: false, action: '⏸ Glucagonul supresat' },
+                'pancreas_beta': { active: true, action: '🔷 Secreție masivă insulina' },
+                'suprarenale': { active: false, action: 'Normal' },
+                'rinichi': { active: true, action: '⚠️ Glicozurie posibilă (>180 mg/dL)' },
+            }
+        }
+    },
+
+    getState(val) {
+        const v = +val;
+        if (v < 55)  return 'danger';
+        if (v < 70)  return 'low';
+        if (v <= 180) return 'normal';
+        return 'high';
+    }
+};
+
+const ORGANS_DEF = [
+    { key: 'ficat',         icon: '🫁', name: 'Ficat' },
+    { key: 'muschi',        icon: '💪', name: 'Mușchi' },
+    { key: 'creier',        icon: '🧠', name: 'Creier' },
+    { key: 'pancreas_alfa', icon: '🟠', name: 'Pancreas α' },
+    { key: 'pancreas_beta', icon: '🟢', name: 'Pancreas β' },
+    { key: 'suprarenale',   icon: '⚡', name: 'Suprarenale' },
+    { key: 'rinichi',       icon: '🫘', name: 'Rinichi' },
+];
+
+function initOrgansGrid() {
+    const grid = document.getElementById('or-grid');
+    if (!grid) return;
+    grid.innerHTML = ORGANS_DEF.map(o => `
+        <div class="or-card" id="orc-${o.key}">
+            <div class="or-organ">${o.icon}</div>
+            <div class="or-name">${o.name}</div>
+            <div class="or-action" id="ora-${o.key}">—</div>
+            <div class="or-status-dot" id="ord-${o.key}"></div>
+        </div>
+    `).join('');
+}
+
+function updateOrgans(stateData) {
+    ORGANS_DEF.forEach(o => {
+        const card  = document.getElementById(`orc-${o.key}`);
+        const action = document.getElementById(`ora-${o.key}`);
+        const info  = stateData.organs[o.key];
+        if (!card || !info) return;
+        card.classList.toggle('active-organ', info.active);
+        card.classList.toggle('inactive', !info.active);
+        if (action) action.textContent = info.action;
+    });
+}
+
+// Feedback loop animation
+function animateLoop(loopTexts) {
+    clearInterval(SIM.loopInterval);
+    SIM.loopStep = 0;
+    const steps = [1,2,3,4,5];
+
+    // Update text
+    steps.forEach((n, i) => {
+        const el = document.getElementById(`ls${n}`);
+        if (el) {
+            el.querySelector('.ls-text').textContent = loopTexts[i] || '';
+            el.classList.remove('active', 'done');
+            el.style.opacity = '0.35';
+        }
+    });
+
+    SIM.loopInterval = setInterval(() => {
+        const prev = document.getElementById(`ls${SIM.loopStep}`);
+        if (prev && SIM.loopStep > 0) {
+            prev.classList.remove('active'); prev.classList.add('done'); prev.style.opacity = '0.7';
+        }
+        SIM.loopStep++;
+        if (SIM.loopStep > 5) {
+            clearInterval(SIM.loopInterval);
+            return;
+        }
+        const cur = document.getElementById(`ls${SIM.loopStep}`);
+        if (cur) { cur.classList.add('active'); cur.style.opacity = '1'; }
+    }, 500);
+}
+
+// Chart drawing
+function initSimChart() {
+    const canvas = document.getElementById('sim-chart');
+    if (!canvas) return;
+    canvas.width  = canvas.offsetWidth  || 240;
+    canvas.height = canvas.offsetHeight || 200;
+}
+
+function drawSimChart(currentVal) {
+    const canvas = document.getElementById('sim-chart');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    canvas.width = canvas.offsetWidth || 240;
+    const W = canvas.width, H = canvas.height || 200;
+
+    ctx.clearRect(0, 0, W, H);
+
+    // Background grid
+    ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+    ctx.lineWidth = 1;
+    for (let y = 0; y < H; y += H/5) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    }
+
+    // Normal zone band (70-180)
+    const toY = v => H - ((v - 0) / 320) * H;
+    const normalTop = toY(180), normalBot = toY(70);
+    ctx.fillStyle = 'rgba(16,185,129,0.07)';
+    ctx.fillRect(0, normalTop, W, normalBot - normalTop);
+    ctx.strokeStyle = 'rgba(16,185,129,0.2)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(0, normalTop); ctx.lineTo(W, normalTop); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, normalBot); ctx.lineTo(W, normalBot); ctx.stroke();
+
+    // Y axis labels
+    ctx.fillStyle = 'rgba(255,255,255,0.25)'; ctx.font = '9px Inter,sans-serif'; ctx.textAlign = 'right';
+    [[300,'300'],[180,'180'],[100,'100'],[70,'70'],[40,'40']].forEach(([v,l]) => {
+        ctx.fillText(l, 28, toY(v) + 3);
+    });
+
+    if (SIM.chartHistory.length < 2) return;
+
+    // Draw line
+    const xStep = (W - 32) / (SIM.chartMax - 1);
+    const startX = 32;
+    const pts = SIM.chartHistory.map((v, i) => ({ x: startX + i * xStep, y: toY(v) }));
+
+    // Gradient fill under line
+    const grad = ctx.createLinearGradient(0, 0, 0, H);
+    grad.addColorStop(0, 'rgba(139,92,246,0.3)');
+    grad.addColorStop(1, 'rgba(139,92,246,0)');
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x, H);
+    pts.forEach(p => ctx.lineTo(p.x, p.y));
+    ctx.lineTo(pts[pts.length-1].x, H);
+    ctx.closePath(); ctx.fillStyle = grad; ctx.fill();
+
+    // Line stroke
+    ctx.beginPath();
+    ctx.moveTo(pts[0].x, pts[0].y);
+    pts.forEach((p, i) => {
+        if (i > 0) {
+            const cp = pts[i-1];
+            ctx.bezierCurveTo(
+                cp.x + xStep/2, cp.y,
+                p.x  - xStep/2, p.y,
+                p.x, p.y
+            );
+        }
+    });
+    ctx.strokeStyle = '#ef4444'; ctx.lineWidth = 2.5;
+    ctx.shadowColor = 'rgba(239,68,68,0.5)'; ctx.shadowBlur = 8;
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    // Last point dot
+    const last = pts[pts.length-1];
+    ctx.beginPath(); ctx.arc(last.x, last.y, 5, 0, Math.PI*2);
+    ctx.fillStyle = '#ef4444'; ctx.fill();
+    ctx.strokeStyle = 'white'; ctx.lineWidth = 2; ctx.stroke();
+}
+
+function resetSimChart() {
+    SIM.chartHistory = [];
+    const canvas = document.getElementById('sim-chart');
+    if (canvas) { const c = canvas.getContext('2d'); c.clearRect(0, 0, canvas.width, canvas.height); }
+    soundClick();
+}
+
+// ---- MAIN UPDATE FUNCTION ----
+function updateGlycemiaSimulator(val) {
+    val = +val;
+    const stateKey = SIM.getState(val);
+    const state = SIM.states[stateKey];
+
+    // Update slider fill and thumb label
+    const slider = document.getElementById('glucose-slider');
+    const fill   = document.getElementById('slider-fill');
+    const thumb  = document.getElementById('slider-thumb-label');
+    if (slider && fill) {
+        const pct = ((val - 40) / (300 - 40)) * 100;
+        fill.style.width = pct + '%';
+        const thumbColors = { danger:'#ef4444', low:'#f97316', normal:'#10b981', high:'#8b5cf6' };
+        fill.style.background = thumbColors[stateKey];
+        if (thumb) {
+            thumb.textContent = val + ' mg/dL';
+            thumb.style.left = `calc(${pct}% - 30px)`;
+            thumb.style.background = thumbColors[stateKey];
+        }
+    }
+
+    // Glucometer
+    const meter   = document.getElementById('sim-meter');
+    const meterV  = document.getElementById('meter-value');
+    const meterS  = document.getElementById('meter-status');
+    if (meter) {
+        meter.className = 'sim-meter ' + state.level;
+        meterV.textContent = val;
+        meterS.textContent = state.status;
+    }
+
+    // Hormone panel
+    setText('sh-gland', state.gland);
+    setText('sh-cells', state.cells);
+    setText('sh-hormone-icon', state.hormoneIcon);
+    setText('sh-hormone-name', state.hormone);
+    setText('sh-target-text', state.target);
+    const arrow = document.getElementById('sh-arrow-icon');
+    if (arrow) { arrow.className = 'fa-solid ' + state.arrowDir; arrow.style.color = state.arrowColor; }
+
+    // Dot pulse color
+    document.querySelectorAll('.dot-pulse').forEach(d => d.style.background = state.arrowColor);
+
+    // Context card
+    setText('sc-icon', state.contextIcon);
+    setText('sc-title', state.contextTitle);
+    setText('sc-desc', state.contextDesc);
+
+    // Loop feedback
+    animateLoop(state.loop);
+
+    // Organs grid
+    updateOrgans(state);
+
+    // Chart history
+    SIM.chartHistory.push(val);
+    if (SIM.chartHistory.length > SIM.chartMax) SIM.chartHistory.shift();
+    drawSimChart(val);
+    setText('chart-last-val', val + ' mg/dL');
+
+    // Sound (subtle)
+    if (stateKey === 'danger') soundWrong();
+}
+
+function setText(id, txt) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = txt;
+}
+
+function setGlucose(val) {
+    const slider = document.getElementById('glucose-slider');
+    if (slider) { slider.value = val; updateGlycemiaSimulator(val); soundClick(); }
+}
+
+// Init simulator on page load
+window.addEventListener('load', () => {
+    initOrgansGrid();
+    initSimChart();
+    updateGlycemiaSimulator(90);
+    // Pre-fill chart with baseline
+    for (let i = 0; i < 10; i++) SIM.chartHistory.push(90);
+    drawSimChart(90);
+    
+    // Init dictionary
+    renderDict(DICT_TERMS);
+});
+
+// =========================================
+// DICTIONAR MEDICAL
+// =========================================
+const DICT_TERMS = [
+    { word: "Homeostazie", def: "Proprietatea organismului de a menține un echilibru intern stabil, indiferent de schimbările din mediul extern (ex: reglarea temperaturii sau a glicemiei).", tag: "Concept" },
+    { word: "Hormon", def: "Substanță chimică secretată de o glandă endocrină, care călătorește prin sânge și transmite mesaje către anumite celule sau organe țintă.", tag: "Biologie" },
+    { word: "Feedback Negativ", def: "Un mecanism de control în care creșterea unui anumit produs (ex: hormon) oprește producerea ulterioară a acestuia, pentru a preveni excesul.", tag: "Mecanism" },
+    { word: "Glandă Endocrină", def: "Organ care produce hormoni și îi eliberează direct în sânge, fără a avea ducte (canale de excreție).", tag: "Anatomie" },
+    { word: "Glandă Exocrină", def: "Organ care își elimină secrețiile prin ducte, fie la exteriorul corpului (glande sudoripare), fie în cavități (glande salivare).", tag: "Anatomie" },
+    { word: "Receptor", def: "O proteină aflată pe suprafața sau în interiorul unei celule, de care se leagă un hormon specific pentru a declanșa o reacție.", tag: "Biologie Celulară" },
+    { word: "Metabolism", def: "Totalitatea proceselor chimice din organism necesare pentru a menține viața (ex: transformarea alimentelor în energie).", tag: "Proces" },
+    { word: "Gluconeogeneză", def: "Procesul prin care ficatul produce glucoză nouă din alte surse (ex: aminoacizi) atunci când rezervele de zahăr sunt scăzute.", tag: "Fiziologie" },
+    { word: "Glicogenoliză", def: "Descompunerea glicogenului (forma de stocare a glucozei) înapoi în glucoză activă în sânge, stimulată de glucagon.", tag: "Fiziologie" },
+    { word: "Glicozurie", def: "Prezența glucozei în urină, care apare atunci când nivelul glicemiei depășește capacitatea de filtrare a rinichilor (frecvent în diabet).", tag: "Patologie" },
+    { word: "Corticoizi", def: "Clasă de hormoni steroizi produși de glandele suprarenale (cortizol, aldosteron) care reglează stresul, metabolismul și echilibrul sărurilor.", tag: "Clasă Hormonală" },
+    { word: "Peptide", def: "Tip de hormoni formați din lanțuri scurte de aminoacizi (proteine mici). Nu pătrund în celulă, acționează prin receptori externi.", tag: "Clasă Hormonală" },
+    { word: "Steroizi", def: "Hormoni derivați din colesterol (lipidici). Pot trece ușor prin membrana celulară și acționează direct asupra ADN-ului din nucleu.", tag: "Clasă Hormonală" },
+    { word: "Hipoglicemie", def: "Scăderea periculoasă a nivelului de glucoză din sânge (sub 70 mg/dL), provocând slăbiciune, tremur și, în cazuri grave, pierderea stării de conștiență.", tag: "Patologie" },
+    { word: "Hiperglicemie", def: "Creșterea anormală a nivelului de glucoză din sânge (peste 140-180 mg/dL), specifică diabetului zaharat.", tag: "Patologie" }
+];
+
+function renderDict(terms) {
+    const grid = document.getElementById('dict-grid');
+    const empty = document.getElementById('dict-empty');
+    if (!grid || !empty) return;
+
+    if (terms.length === 0) {
+        grid.innerHTML = '';
+        grid.style.display = 'none';
+        empty.style.display = 'block';
+        return;
+    }
+
+    grid.style.display = 'grid';
+    empty.style.display = 'none';
+    
+    grid.innerHTML = terms.map(t => `
+        <div class="dict-card">
+            <div class="dict-word">${t.word}</div>
+            <div class="dict-def">${t.def}</div>
+            <div class="dict-tag">${t.tag}</div>
+        </div>
+    `).join('');
+}
+
+function filterDict() {
+    const input = document.getElementById('dict-search-input');
+    const clearBtn = document.getElementById('dict-clear');
+    if (!input) return;
+
+    const val = input.value.trim().toLowerCase();
+    
+    if (val.length > 0) {
+        clearBtn.style.display = 'flex';
+    } else {
+        clearBtn.style.display = 'none';
+    }
+
+    const filtered = DICT_TERMS.filter(t => 
+        t.word.toLowerCase().includes(val) || 
+        t.def.toLowerCase().includes(val) ||
+        t.tag.toLowerCase().includes(val)
+    );
+
+    renderDict(filtered);
+}
+
+function clearDictSearch() {
+    const input = document.getElementById('dict-search-input');
+    const clearBtn = document.getElementById('dict-clear');
+    if (input) {
+        input.value = '';
+        clearBtn.style.display = 'none';
+        renderDict(DICT_TERMS);
+        input.focus();
+    }
+}
